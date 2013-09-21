@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="md5">
+    <CLASSES>
+      <root url="jar://$LOCAL_LIBRARIES$/fast-md5/md5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$LOCAL_LIBRARIES$/fast-md5/md5.jar!/doc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$LOCAL_LIBRARIES$/fast-md5/md5.jar!/" />
+    </SOURCES>
+  </library>
+</component>
