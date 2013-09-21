@@ -68,7 +68,8 @@ public class CreateDirStructure {
      */
     public static void createDirectories(List<String> dirList) {
         String oldName = "";
-        ArrayList<String> result = new ArrayList<String>(dirList.size());
+        ArrayList<String> fileName = new ArrayList<String>(dirList.size());
+        ArrayList<String> folderPath = new ArrayList<String>(dirList.size());
 
         for (Object f : dirList) {
             if (f != null) {
@@ -83,18 +84,39 @@ public class CreateDirStructure {
                     Directory di = new Directory(AppVars.getRepoLocation() + fileNameOnly);
 
                     di.create();
+                    fileName.add(srcFileName);
+                    folderPath.add(AppVars.getRepoLocation() + fileNameOnly);
                     ConfigureVersionControl.configVersionControl(srcFileName, srcPath + "\\", fileNameOnly);
+                    ContentSerializer.serializeContent(srcPath + srcFileName, fileNameOnly);
                 } else {
                     Directory di = new Directory(AppVars.getRepoLocation() + fileNameOnly);
 
                     di.create();
+                    fileName.add(srcFileName);
+                    folderPath.add(AppVars.getRepoLocation() + fileNameOnly);
                     ConfigureVersionControl.configVersionControl(srcFileName, srcPath + "\\", fileNameOnly);
+                    ContentSerializer.serializeContent(f.toString(), fileNameOnly);
                 }
 
                 oldName = fileNameOnly;
-                result.add(fileNameOnly);
             }
         }
+
+        SerializeFolderPaths(fileName, folderPath);
+    }
+
+    private static void SerializeFolderPaths(ArrayList<String> fileName, ArrayList<String> folderPath) {
+        CreatedFolders cf = new CreatedFolders();
+        CreatedFolderPaths cfp = new CreatedFolderPaths();
+
+        cf.setFoldersCreated(fileName);
+        cfp.setFolderPaths(folderPath);
+
+        Serializer sr = new Serializer();
+
+        sr.serializeObject(AppVars.getRepoLocation() + AppVars.getCreatedFolders(), cf);
+        sr = new Serializer();
+        sr.serializeObject(AppVars.getRepoLocation() + AppVars.getCreatedFolderPaths(), cfp);
     }
 }
 

@@ -48,6 +48,41 @@ public class AppVars {
     private static final String TEMP_PATH = "/home/temp/";
     private static final String BACKUP_PATH = "/home/backup/";
     private static final String VERSION_CONTROL_FILE = "Version_Control.xml";
+    private static final String CREATED_FOLDERS = "Created_Folders.dat";
+    private static final String CREATED_FOLDER_PATHS = "Created_Folder_Paths.dat";
+    private static final String PERSISTENCE_UNIT = "persvcs";
+    private static final String CONTENT_VER = "Content_Ver_";
+    private static final String CONTENT_VER_EXT = "_.xml";
+
+    /**
+     * Method description
+     *
+     *
+     * @return persistence instance name
+     */
+    public static String getPersistenceUnit() {
+        return PERSISTENCE_UNIT;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return created folder path file name
+     */
+    public static String getCreatedFolderPaths() {
+        return CREATED_FOLDER_PATHS;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return  filename for created folders listing
+     */
+    public static String getCreatedFolders() {
+        return CREATED_FOLDERS;
+    }
 
     /**
      * Method description
@@ -87,6 +122,26 @@ public class AppVars {
      */
     public static String getRepoLocation() {
         return REPO_PATH;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return content file prefix
+     */
+    public static String getContentVer() {
+        return CONTENT_VER;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return  content file ext
+     */
+    public static String getContentVerExt() {
+        return CONTENT_VER_EXT;
     }
 }
 

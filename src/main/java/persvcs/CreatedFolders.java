@@ -1,5 +1,5 @@
 /*
- * @(#)ConfigureVersionControl.java   13/09/21
+ * @(#)CreatedFolders.java   13/09/21
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -38,62 +38,38 @@ package persvcs;
 
 //~--- JDK imports ------------------------------------------------------------
 
-import java.io.File;
+import java.io.Serializable;
 
-import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
  * Date: 9/21/13
- * Time: 12:21 PM
+ * Time: 2:38 PM
  * Original Project: PersVcs
  */
-public class ConfigureVersionControl {
-
-    /** Field description */
-    public static final String SLASH = "/";
+public class CreatedFolders implements Serializable {
+    private List<String> foldersCreated;
 
     /**
      * Method description
      *
      *
-     * @param srcfileName
-     * @param srcFilePath
-     * @param srcNameNoX
+     * @return
      */
-    public static void configVersionControl(String srcfileName, String srcFilePath, String srcNameNoX) {
-        Date d = new Date();
-        VersionControlFile vc = new VersionControlFile();
-        File fi = new File(new StringBuilder().append(srcFilePath).append(srcfileName).toString());
+    public List<String> getFoldersCreated() {
+        return foldersCreated;
+    }
 
-        vc.setMd5Hash(Hasher.md5FastHash(fi));
-        vc.setRepoFileLocation(
-            new StringBuilder().append(AppVars.getRepoLocation()).append(srcNameNoX).append(SLASH).toString());
-        vc.setSrcFileLocation(new StringBuilder().append(srcFilePath).append(srcfileName).toString());
-        vc.setSrcFileName(srcfileName);
-        vc.setEditTime(d);
-
-        java.io.File f = new java.io.File(
-                             new StringBuilder().append(AppVars.getRepoLocation()).append(srcNameNoX).append(
-                                 AppVars.getVersionControlFile()).toString());
-
-        if (f.exists()) {
-            if (!vc.getMd5Hash().equals(SaveExtractVersionControl.extractMD5Hash(f))) {
-                int i = SaveExtractVersionControl.extractVersion(f);
-
-                i++;
-                vc.setCurrentVersion(i);
-            } else {
-                vc.setCurrentVersion(SaveExtractVersionControl.extractVersion(f));
-            }
-        } else {
-            vc.setCurrentVersion(1);
-        }
-
-        SaveExtractVersionControl.saveVersion(
-                new StringBuilder().append(AppVars.getRepoLocation()).append(srcNameNoX).append(SLASH).append(
-                        AppVars.getVersionControlFile()).toString(), vc);
+    /**
+     * Method description
+     *
+     *
+     * @param foldersCreated
+     */
+    public void setFoldersCreated(List<String> foldersCreated) {
+        this.foldersCreated = foldersCreated;
     }
 }
 

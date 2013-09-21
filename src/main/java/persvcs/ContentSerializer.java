@@ -1,5 +1,5 @@
 /*
- * @(#)ConfigureVersionControl.java   13/09/21
+ * @(#)ContentSerializer.java   13/09/21
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -40,60 +40,44 @@ package persvcs;
 
 import java.io.File;
 
-import java.util.Date;
-
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
  * Date: 9/21/13
- * Time: 12:21 PM
+ * Time: 3:25 PM
  * Original Project: PersVcs
  */
-public class ConfigureVersionControl {
-
-    /** Field description */
-    public static final String SLASH = "/";
+public class ContentSerializer {
 
     /**
      * Method description
      *
      *
-     * @param srcfileName
      * @param srcFilePath
-     * @param srcNameNoX
+     * @param fileNameOnly
      */
-    public static void configVersionControl(String srcfileName, String srcFilePath, String srcNameNoX) {
-        Date d = new Date();
-        VersionControlFile vc = new VersionControlFile();
-        File fi = new File(new StringBuilder().append(srcFilePath).append(srcfileName).toString());
+    public static void serializeContent(String srcFilePath, String fileNameOnly) {
+        VersionFileContent vfc = new VersionFileContent();
+        File fc = new File(AppVars.getRepoLocation() + fileNameOnly + "\\" + AppVars.getVersionControlFile());
+        VersionControlFile vcf = SaveExtractVersionControl.extractVersionControl(fc);
+        File fv = new File(AppVars.getRepoLocation() + fileNameOnly + "\\" + AppVars.getVersionControlFile());
+        File fContent = new File(srcFilePath);
 
-        vc.setMd5Hash(Hasher.md5FastHash(fi));
-        vc.setRepoFileLocation(
-            new StringBuilder().append(AppVars.getRepoLocation()).append(srcNameNoX).append(SLASH).toString());
-        vc.setSrcFileLocation(new StringBuilder().append(srcFilePath).append(srcfileName).toString());
-        vc.setSrcFileName(srcfileName);
-        vc.setEditTime(d);
+        vfc.setCurrentVersion(SaveExtractVersionControl.extractVersion(fv));
+        vfc.setMd5Hash(SaveExtractVersionControl.extractMD5Hash(fv));
+        vfc.setRepoFileLocation(vcf.getSrcFileLocation());
+        vfc.setRepoFileLocation(vcf.getRepoFileLocation());
+        vfc.setSrcFileName(fileNameOnly);
+        vfc.setEditTime(vcf.getEditTime());
+        vfc.setRevisionComment("Latest Update");
+        vfc.setSrcContent(ReadWrite.readToByte(fContent));
 
-        java.io.File f = new java.io.File(
-                             new StringBuilder().append(AppVars.getRepoLocation()).append(srcNameNoX).append(
-                                 AppVars.getVersionControlFile()).toString());
+        Serializer sr = new Serializer();
 
-        if (f.exists()) {
-            if (!vc.getMd5Hash().equals(SaveExtractVersionControl.extractMD5Hash(f))) {
-                int i = SaveExtractVersionControl.extractVersion(f);
-
-                i++;
-                vc.setCurrentVersion(i);
-            } else {
-                vc.setCurrentVersion(SaveExtractVersionControl.extractVersion(f));
-            }
-        } else {
-            vc.setCurrentVersion(1);
-        }
-
-        SaveExtractVersionControl.saveVersion(
-                new StringBuilder().append(AppVars.getRepoLocation()).append(srcNameNoX).append(SLASH).append(
-                        AppVars.getVersionControlFile()).toString(), vc);
+        sr.serializeObject(
+            new StringBuilder().append(AppVars.getRepoLocation()).append(fileNameOnly).append("\\").append(
+                AppVars.getContentVer()).append(vcf.getCurrentVersion()).append(
+                AppVars.getContentVerExt()).toString(), vfc);
     }
 }
 
