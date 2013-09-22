@@ -38,16 +38,18 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import javaxt.io.Directory;
 import javaxt.io.File;
 
 import static persvcs.ConfigureVersionControl.configVersionControl;
+
 import static persvcs.ContentSerializer.serializeContent;
 
 //~--- JDK imports ------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -60,6 +62,8 @@ public class CreateDirStructure {
 
     /** Field description */
     public static final String UnderScore = "_";
+
+    /** Field description */
     public static final String SLASH = "\\";
 
     /**
@@ -75,6 +79,7 @@ public class CreateDirStructure {
 
         for (Iterator<String> iterator = dirList.iterator(); iterator.hasNext(); ) {
             Object f = iterator.next();
+
             if (f != null) {
                 String srcPath = new File(f.toString()).getDirectory().toString();
                 String srcFileName = new File(f.toString()).getName();
@@ -91,6 +96,14 @@ public class CreateDirStructure {
                     folderPath.add(AppVars.getRepoLocation() + fileNameOnly);
                     configVersionControl(srcFileName, srcPath + SLASH, fileNameOnly);
                     serializeContent(srcPath + srcFileName, fileNameOnly);
+
+                    java.io.File fe = new java.io.File(
+                                          new StringBuilder().append(AppVars.getRepoLocation()).append(
+                                              fileNameOnly).append(SLASH).append(
+                                              AppVars.getVersionControlFile()).toString());
+                    int ver = SaveExtractVersionControl.extractVersion(fe);
+
+                    CreateEntity.createEntity(f.toString(), srcFileName, AppVars.getRepoLocation() + fileNameOnly, ver);
                 } else {
                     Directory di = new Directory(AppVars.getRepoLocation() + fileNameOnly);
 
@@ -99,6 +112,13 @@ public class CreateDirStructure {
                     folderPath.add(AppVars.getRepoLocation() + fileNameOnly);
                     configVersionControl(srcFileName, srcPath + SLASH, fileNameOnly);
                     serializeContent(f.toString(), fileNameOnly);
+                    java.io.File fe = new java.io.File(
+                            new StringBuilder().append(AppVars.getRepoLocation()).append(
+                                    fileNameOnly).append(SLASH).append(
+                                    AppVars.getVersionControlFile()).toString());
+                    int ver = SaveExtractVersionControl.extractVersion(fe);
+
+                    CreateEntity.createEntity(f.toString(), srcFileName, AppVars.getRepoLocation() + fileNameOnly, ver);
                 }
 
                 oldName = fileNameOnly;

@@ -39,33 +39,18 @@ package persvcs;
 //~--- non-JDK imports --------------------------------------------------------
 
 import com.xzq.osc.JocTable;
-
-import javaxt.io.Directory;
-
-import org.jdesktop.beansbinding.AutoBinding;
-import org.jdesktop.beansbinding.BindingGroup;
-import org.jdesktop.beansbinding.ELProperty;
-import org.jdesktop.swingbinding.JTableBinding;
-
-//~--- JDK imports ------------------------------------------------------------
-
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import java.io.File;
-
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -75,12 +60,18 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javaxt.io.Directory;
+import org.jdesktop.beansbinding.AutoBinding;
+import org.jdesktop.beansbinding.BindingGroup;
+import org.jdesktop.beansbinding.ELProperty;
+import org.jdesktop.swingbinding.JTableBinding;
 import org.jdesktop.swingbinding.SwingBindings;
 
-import static java.beans.Beans.*;
-import static java.util.Collections.*;
+import static java.beans.Beans.isDesignTime;
+import static java.util.Collections.emptyList;
 import static javax.swing.JFileChooser.DIRECTORIES_ONLY;
-import static javax.swing.JFileChooser.DIRECTORY_CHANGED_PROPERTY;
+
+//~--- JDK imports ------------------------------------------------------------
 
 /**
  * Created with IntelliJ IDEA.
@@ -112,13 +103,7 @@ public class Main extends JFrame {
      * @param args
      */
     public static void main(String[] args) {
-        Directory di = new Directory(AppVars.getRepoLocation());
-
-        di.create();
-        di = new Directory(AppVars.getBackupPath());
-        di.create();
-        di = new Directory(AppVars.getTempPath());
-        di.create();
+        createBaseStructure();
 
         Executor exec = Executors.newFixedThreadPool(10);
         Runnable runnable = new Runnable() {
@@ -132,13 +117,23 @@ public class Main extends JFrame {
                 if (jfc.getSelectedFile().isDirectory()) {
                     WatchDir.WatchDir(jfc.getSelectedFile().toString());
                 } else {
-                    JOptionPane.showMessageDialog(null, "No folder was chosen to monitor");
+                    JOptionPane.showMessageDialog(null, "No valid folder was chosen to monitor");
                 }
             }
         };
 
         exec.execute(runnable);
         buildGui();
+    }
+
+    private static void createBaseStructure() {
+        Directory di = new Directory(AppVars.getRepoLocation());
+
+        di.create();
+        di = new Directory(AppVars.getBackupPath());
+        di.create();
+        di = new Directory(AppVars.getTempPath());
+        di.create();
     }
 
     private static void buildGui() {
@@ -228,13 +223,10 @@ public class Main extends JFrame {
                          ? null
                          : Persistence.createEntityManagerFactory(AppVars.getPersistenceUnit()).createEntityManager());
         versionQuery = (isDesignTime() ? null : entityManager.createNamedQuery(VERSION_QUERY));
-        versionList = (isDesignTime()
-                       ? emptyList() : versionQuery.getResultList());
-        jTableBinding = SwingBindings.createJTableBinding(
-            AutoBinding.UpdateStrategy.READ, versionList, jt);
+        versionList = (isDesignTime() ? emptyList() : versionQuery.getResultList());
+        jTableBinding = SwingBindings.createJTableBinding(AutoBinding.UpdateStrategy.READ, versionList, jt);
 
-        JTableBinding.ColumnBinding columnBinding =
-            jTableBinding.addColumnBinding(ELProperty.create("${id}"));
+        JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(ELProperty.create("${id}"));
 
         columnBinding.setColumnName("File ID");
         columnBinding.setColumnClass(Integer.class);
