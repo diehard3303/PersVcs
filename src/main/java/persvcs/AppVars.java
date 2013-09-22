@@ -50,7 +50,7 @@ public class AppVars {
     private static final String VERSION_CONTROL_FILE = "Version_Control.xml";
     private static final String CREATED_FOLDERS = "Created_Folders.dat";
     private static final String CREATED_FOLDER_PATHS = "Created_Folder_Paths.dat";
-    private static final String PERSISTENCE_UNIT = "persvcs";
+    private static final String PERSISTENCE_UNIT = "DvVcs";
     private static final String CONTENT_VER = "Content_Ver_";
     private static final String CONTENT_VER_EXT = "_.xml";
     private static String revisionComment;
