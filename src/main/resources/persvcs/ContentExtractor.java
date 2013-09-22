@@ -1,5 +1,5 @@
 /*
- * @(#)FindFolders.java   13/09/21
+ * @(#)ContentExtractor.java   13/09/22
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -42,68 +42,43 @@ import com.thoughtworks.xstream.XStream;
 
 //~--- JDK imports ------------------------------------------------------------
 
-import java.io.File;
+import java.awt.Desktop;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
- * Date: 9/21/13
- * Time: 7:48 PM
+ * Date: 9/22/13
+ * Time: 5:56 PM
  * Original Project: PersVcs
  */
-public class FindFolders {
+public class ContentExtractor {
 
     /**
-     * Method description
-     *
+     * Method description:
+     * Extract content then write file and execute
+     * system default application
      *
      * @param fileName
-     *
-     * @return folder path
      */
-    public static String findFolderPath(String fileName) {
-        String folder;
-        ArrayList<String> folders = extractFolders();
-        ArrayList<String> folderPath = extractFolderPath();
-
-        folder = folders.contains(fileName) ? folderPath.get(folders.indexOf(fileName)) : null;
-
-        return folder;
-    }
-
-    /**
-     * Method description
-     *
-     *
-     *
-     * @return  Created Folder Paths object
-     */
-    private static CreatedFolderPaths extractFolderPath() {
+    public static void extractContent(String fileName) {
         XStream xs = new XStream();
-        CreatedFolderPaths cfp = (CreatedFolderPaths) xs.fromXML(
-                                     new StringBuilder().append(AppVars.getRepoLocation()).append(
-                                         AppVars.getCreatedFolderPaths()).toString());
+        File fe = new File(fileName);
+        VersionFileContent vs = (VersionFileContent) xs.fromXML(fe);
 
-        return (CreatedFolderPaths) cfp.getFolderPaths();
-    }
+        ReadWrite.readFromByte(vs.getSrcContent(), AppVars.getTempPath() + vs.getSrcFileName());
 
-    /**
-     * Method description
-     *
-     * @return  Created Folders object
-     */
-    private static CreatedFolders extractFolders() {
-        XStream xs = new XStream();
-        CreatedFolders cf = (CreatedFolders) xs.fromXML(
-                                new StringBuilder().append(AppVars.getRepoLocation()).append(
-                                    AppVars.getCreatedFolders()).toString());
+        File fs = new File(AppVars.getTempPath() + vs.getSrcFileName());
 
-        return (CreatedFolders) cf.getFoldersCreated();
+        try {
+            Desktop.getDesktop().open(fs);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/21
+//~ Formatted in DD Std on 13/09/22

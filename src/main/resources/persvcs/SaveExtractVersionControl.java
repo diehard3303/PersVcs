@@ -1,5 +1,5 @@
 /*
- * @(#)GetFileListing.java   13/09/21
+ * @(#)SaveExtractVersionControl.java   13/09/22
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -38,66 +38,67 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
-import javaxt.io.Directory;
+import com.thoughtworks.xstream.XStream;
 
 //~--- JDK imports ------------------------------------------------------------
 
-import java.util.List;
+import java.io.File;
 
 /**
- * Created with IntelliJ IDEA.
- * User: TJ (DieHard)
- * Date: 9/21/13
- * Time: 11:57 AM
- * Original Project: PersVcs
+ * Class description
+ *
+ *
+ * @version        1.0, 13/09/21
+ * @author         TJ
  */
-public class GetFileListing {
-    public static final String SLASH = "\\";
-    private String dirPath;
-    private String filter;
+public class SaveExtractVersionControl {
+    static void saveVersion(String xmlPath, Object version) {
+        Serializer sr = new Serializer();
+
+        sr.serializeObject(xmlPath, version);
+    }
 
     /**
      * Method description
      *
-     *
-     * @param dirPath
-     *
-     * @return   file listing all
+     * @param xmlFile
+     * @return stored version number
      */
-    public List<String> getFileListing(String dirPath) {
-        this.dirPath = dirPath + SLASH;
+    public static int extractVersion(File xmlFile) {
+        XStream xs = new XStream();
+        VersionControlFile vs = (VersionControlFile) xs.fromXML(xmlFile);
 
-        Directory directory = new Directory(this.dirPath);
-        List<String> files;
+        return vs.getCurrentVersion();
+    }
 
-        /* Return a list of all files found in the current directory */
-        files = directory.getChildren(true, "*.*", true);
+    /**
+     * Method description
+     *
+     * @param xmlFile
+     * @return stored md5 hash
+     */
+    public static String extractMD5Hash(File xmlFile) {
+        XStream xs = new XStream();
+        VersionControlFile vs = (VersionControlFile) xs.fromXML(xmlFile);
 
-        return files;
+        return vs.getMd5Hash();
     }
 
     /**
      * Method description
      *
      *
-     * @param dirPath
-     * @param filter
+     * @param xmlFile
      *
-     * @return   file listing filtered
+     * @return  VersionControl object
      */
-    public List<String> getFileListing(String dirPath, String filter) {
-        this.dirPath = dirPath + SLASH;
-        this.filter = filter;
+    public static VersionControlFile extractVersionControl(File xmlFile) {
+        XStream xs = new XStream();
+        VersionControlFile vs = (VersionControlFile) xs.fromXML(xmlFile);
 
-        Directory directory = new Directory(this.dirPath);
-        List<String> files;
-
-        /* Return a list of all files found in the current directory */
-        files = directory.getChildren(true, this.filter, true);
-
-        return files;
+        return vs;
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/21
+//~ Formatted in DD Std on 13/09/22

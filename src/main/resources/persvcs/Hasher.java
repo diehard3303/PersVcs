@@ -1,5 +1,5 @@
 /*
- * @(#)CreateEntity.java   13/09/21
+ * @(#)Hasher.java   13/09/21
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -36,50 +36,46 @@ either expressed or implied, of the FreeBSD Project.
 
 package persvcs;
 
+//~--- non-JDK imports --------------------------------------------------------
+
+import com.twmacinta.util.MD5;
+
+import static com.twmacinta.util.MD5.asHex;
+
 //~--- JDK imports ------------------------------------------------------------
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.io.File;
+import java.io.IOException;
+
+import static java.util.logging.Logger.getLogger;
 
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
  * Date: 9/21/13
- * Time: 10:01 PM
+ * Time: 1:14 PM
  * Original Project: PersVcs
  */
-public class CreateEntity {
+public class Hasher {
 
     /**
      * Method description
      *
      *
-     * @param srcLocation
-     * @param srcFileName
-     * @param repoLocation
-     * @param versionNumber
+     * @param file
+     *
+     * @return  md5 hash
      */
-    public static void createEntity(String srcLocation, String srcFileName, String repoLocation, int versionNumber) {
-        VersiontablePers vtp = new VersiontablePers();
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(AppVars.getPersistenceUnit());
-
-        vtp.setFilename(srcFileName);
-        vtp.setLocation(srcLocation);
-        vtp.setRepository(repoLocation);
-        vtp.setVersion(versionNumber);
-
-        JpaControl jpc = new JpaControl(emf);
-        int tmpVer = jpc.getVersionCount();
-
-        jpc = new JpaControl(emf);
-        tmpVer++;
-        vtp.setId(tmpVer);
+    public static String md5FastHash(File file) {
+        String hash = "";
 
         try {
-            jpc.create(vtp);
-        } catch (Exception e) {
-            e.printStackTrace();
+            hash = asHex(MD5.getHash(file));
+        } catch (IOException e) {
+            getLogger(Hasher.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
         }
+
+        return hash;
     }
 }
 

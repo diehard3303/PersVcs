@@ -1,5 +1,5 @@
 /*
- * @(#)ContentSerializer.java   13/09/21
+ * @(#)CreateEntity.java   13/09/21
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -38,53 +38,50 @@ package persvcs;
 
 //~--- JDK imports ------------------------------------------------------------
 
-import java.io.File;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
  * Date: 9/21/13
- * Time: 3:25 PM
+ * Time: 10:01 PM
  * Original Project: PersVcs
  */
-public class ContentSerializer {
+public class CreateEntity {
 
-    /** Field description */
     public static final String SLASH = "\\";
 
     /**
      * Method description
      *
      *
-     * @param srcFilePath
-     * @param fileNameOnly
+     * @param srcLocation
+     * @param srcFileName
+     * @param repoLocation
+     * @param versionNumber
      */
-    public static void serializeContent(String srcFilePath, String fileNameOnly) {
-        VersionFileContent vfc = new VersionFileContent();
-        File fc = new File(
-                      new StringBuilder().append(AppVars.getRepoLocation()).append(fileNameOnly).append(SLASH).append(
-                          AppVars.getVersionControlFile()).toString());
-        VersionControlFile vcf = SaveExtractVersionControl.extractVersionControl(fc);
-        File fv = new File(
-                      new StringBuilder().append(AppVars.getRepoLocation()).append(fileNameOnly).append(SLASH).append(
-                      AppVars.getVersionControlFile()).toString());
-        File fContent = new File(srcFilePath);
+    public static void createEntity(String srcLocation, String srcFileName, String repoLocation, int versionNumber) {
+        VersiontablePers vtp = new VersiontablePers();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(AppVars.getPersistenceUnit());
 
-        vfc.setCurrentVersion(SaveExtractVersionControl.extractVersion(fv));
-        vfc.setMd5Hash(SaveExtractVersionControl.extractMD5Hash(fv));
-        vfc.setRepoFileLocation(vcf.getSrcFileLocation());
-        vfc.setRepoFileLocation(vcf.getRepoFileLocation());
-        vfc.setSrcFileName(fileNameOnly);
-        vfc.setEditTime(vcf.getEditTime());
-        vfc.setRevisionComment("Latest Update");
-        vfc.setSrcContent(ReadWrite.readToByte(fContent));
+        vtp.setFilename(srcFileName);
+        vtp.setLocation(srcLocation);
+        vtp.setRepository(repoLocation + SLASH);
+        vtp.setVersion(versionNumber);
 
-        Serializer sr = new Serializer();
+        JpaControl jpc = new JpaControl(emf);
+        int tmpVer = jpc.getVersionCount();
 
-        sr.serializeObject(
-            new StringBuilder().append(AppVars.getRepoLocation()).append(fileNameOnly).append(SLASH).append(
-                AppVars.getContentVer()).append(vcf.getCurrentVersion()).append(
-                AppVars.getContentVerExt()).toString(), vfc);
+        jpc = new JpaControl(emf);
+        tmpVer++;
+        vtp.setId(tmpVer);
+
+        try {
+            jpc.create(vtp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

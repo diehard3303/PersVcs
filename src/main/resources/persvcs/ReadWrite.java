@@ -1,5 +1,5 @@
 /*
- * @(#)Hasher.java   13/09/21
+ * @(#)ReadWrite.java   13/09/21
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -38,25 +38,23 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
-import com.twmacinta.util.MD5;
+import org.apache.commons.io.FileUtils;
 
-import static com.twmacinta.util.MD5.asHex;
+import static org.apache.commons.io.FileUtils.readFileToByteArray;
 
 //~--- JDK imports ------------------------------------------------------------
 
 import java.io.File;
 import java.io.IOException;
 
-import static java.util.logging.Logger.getLogger;
-
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
  * Date: 9/21/13
- * Time: 1:14 PM
+ * Time: 11:27 AM
  * Original Project: PersVcs
  */
-public class Hasher {
+public class ReadWrite {
 
     /**
      * Method description
@@ -64,18 +62,33 @@ public class Hasher {
      *
      * @param file
      *
-     * @return
+     * @return  data - content
      */
-    public static String md5FastHash(File file) {
-        String hash = "";
+    public static byte[] readToByte(File file) {
+        byte[] data = new byte[0];
 
         try {
-            hash = asHex(MD5.getHash(file));
+            data = readFileToByteArray(file);
         } catch (IOException e) {
-            getLogger(Hasher.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            e.printStackTrace();
         }
 
-        return hash;
+        return data;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param data
+     * @param file
+     */
+    public static void readFromByte(byte[] data, String file) {
+        try {
+            FileUtils.writeByteArrayToFile(new File(file), data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

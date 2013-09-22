@@ -1,5 +1,5 @@
 /*
- * @(#)WatchDir.java   13/09/21
+ * @(#)GetFileListing.java   13/09/21
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -38,75 +38,67 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
+import javax.swing.JOptionPane;
 import javaxt.io.Directory;
 
 //~--- JDK imports ------------------------------------------------------------
 
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
  * Date: 9/21/13
- * Time: 11:52 AM
+ * Time: 11:57 AM
  * Original Project: PersVcs
  */
-public class WatchDir {
-    private static String dirPath;
+public class GetFileListing {
+    public static final String SLASH = "\\";
+    private String dirPath;
+    private String filter;
 
     /**
      * Method description
      *
      *
      * @param dirPath
+     *
+     * @return   file listing all
      */
-    public static void WatchDir(String dirPath) {
-        WatchDir.dirPath = dirPath;
+    public List<String> getFileListing(String dirPath) {
+        this.dirPath = dirPath + SLASH;
 
-        Directory directory = getDirectoryInfo();
-        java.util.List events = null;
+        Directory directory = new Directory(this.dirPath);
+        List<String> files;
 
-        try {
-            events = directory.getEvents();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        /* Return a list of all files found in the current directory */
+        files = directory.getChildren(true, "*.*", true);
 
-        while (true) {
-            Directory.Event event;
+        JOptionPane.showMessageDialog(null, "File listing complete, Click Refresh Database");
 
-            synchronized (events) {
-                while (events.isEmpty()) {
-                    try {
-                        events.wait();
-                    } catch (InterruptedException e) {}
-                }
-
-                event = (Directory.Event) events.remove(0);
-
-                if ((event.getEventID() == event.MODIFY) && event.toString().contains("Modify")
-                        && new java.io.File(event.getFile()).exists()) {}
-
-                if ((event.getEventID() == event.CREATE) && event.toString().contains("Create")) {}
-
-                if ((event.getEventID() == event.DELETE) && event.toString().contains("Delete")) {}
-            }
-
-            if (event != null) {
-                System.out.println(event.toString());
-            }
-        }
+        return files;
     }
 
-    private static Directory getDirectoryInfo() {
-        Directory directory = new Directory(dirPath);
-        GetFileListing gfl = new GetFileListing();
-        List<String> fileList = gfl.getFileListing(dirPath);
+    /**
+     * Method description
+     *
+     *
+     * @param dirPath
+     * @param filter
+     *
+     * @return   file listing filtered
+     */
+    public List<String> getFileListing(String dirPath, String filter) {
+        this.dirPath = dirPath + SLASH;
+        this.filter = filter;
 
-        CreateDirStructure.createDirectories(fileList);
+        Directory directory = new Directory(this.dirPath);
+        List<String> files;
 
-        return directory;
+        /* Return a list of all files found in the current directory */
+        files = directory.getChildren(true, this.filter, true);
+
+        return files;
     }
 }
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+        <entity class="persvcs.VersiontablePers">
+            <table name="VERSIONTABLE" schema="APP" catalog=""/>
+            <attributes>
+                <id name="id">
+                    <column name="ID" nullable="false" length="10"/>
+                </id>
+                <basic name="filename">
+                    <column name="FILENAME" nullable="false" length="500"/>
+                </basic>
+                <basic name="location">
+                    <column name="LOCATION" nullable="false" length="500"/>
+                </basic>
+                <basic name="repository">
+                    <column name="REPOSITORY" nullable="false" length="500"/>
+                </basic>
+                <basic name="version">
+                    <column name="VERSION" nullable="false" length="10"/>
+                </basic>
+            </attributes>
+        </entity>
+    </entity-mappings>
+

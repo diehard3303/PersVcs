@@ -1,5 +1,5 @@
 /*
- * @(#)SaveVersionControl.java   13/09/21
+ * @(#)WatchDir.java   13/09/21
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -38,85 +38,74 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
-import com.thoughtworks.xstream.XStream;
+import javaxt.io.Directory;
 
 //~--- JDK imports ------------------------------------------------------------
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.util.List;
 
 /**
- * Class description
- *
- *
- * @version        1.0, 13/09/21
- * @author         TJ
+ * Created with IntelliJ IDEA.
+ * User: TJ (DieHard)
+ * Date: 9/21/13
+ * Time: 11:52 AM
+ * Original Project: PersVcs
  */
-public class SaveExtractVersionControl {
-    static void saveVersion(String xmlPath, Object version) {
-        XStream xs = new XStream();
-        String xml;
-        byte[] bytes;
-        FileOutputStream fos = null;
+public class WatchDir {
+    private static String dirPath;
+
+    /**
+     * Method description
+     *
+     *
+     * @param dirPath
+     */
+    public static void WatchDir(String dirPath) {
+        WatchDir.dirPath = dirPath;
+
+        Directory directory = getDirectoryInfo();
+        java.util.List events = null;
 
         try {
-            xml = xs.toXML(version);
-            fos = new FileOutputStream(xmlPath);
-            bytes = xml.getBytes("UTF-8");
-            fos.write(bytes);
+            events = directory.getEvents();
         } catch (Exception e) {
-            System.err.println("Error in XML Write: " + e.getMessage());
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            e.printStackTrace();
+        }
+
+        while (true) {
+            Directory.Event event;
+
+            synchronized (events) {
+                while (events.isEmpty()) {
+                    try {
+                        events.wait();
+                    } catch (InterruptedException e) {}
                 }
+
+                event = (Directory.Event) events.remove(0);
+
+                if ((event.getEventID() == event.MODIFY) && event.toString().contains("Modify")
+                        && new java.io.File(event.getFile()).exists()) {}
+
+                if ((event.getEventID() == event.CREATE) && event.toString().contains("Create")) {}
+
+                if ((event.getEventID() == event.DELETE) && event.toString().contains("Delete")) {}
+            }
+
+            if (event != null) {
+                System.out.println(event.toString());
             }
         }
     }
 
-    /**
-     * Method description
-     *
-     * @param xmlFile
-     * @return stored version number
-     */
-    public static int extractVersion(File xmlFile) {
-        XStream xs = new XStream();
-        VersionControlFile vs = (VersionControlFile) xs.fromXML(xmlFile);
+    private static Directory getDirectoryInfo() {
+        Directory directory = new Directory(dirPath);
+        GetFileListing gfl = new GetFileListing();
+        List<String> fileList = gfl.getFileListing(dirPath);
 
-        return vs.getCurrentVersion();
-    }
+        CreateDirStructure.createDirectories(fileList);
 
-    /**
-     * Method description
-     *
-     * @param xmlFile
-     * @return stored md5 hash
-     */
-    public static String extractMD5Hash(File xmlFile) {
-        XStream xs = new XStream();
-        VersionControlFile vs = (VersionControlFile) xs.fromXML(xmlFile);
-
-        return vs.getMd5Hash();
-    }
-
-    /**
-     * Method description
-     *
-     *
-     * @param xmlFile
-     *
-     * @return  VersionControl object
-     */
-    public static VersionControlFile extractVersionControl(File xmlFile) {
-        XStream xs = new XStream();
-        VersionControlFile vs = (VersionControlFile) xs.fromXML(xmlFile);
-
-        return vs;
+        return directory;
     }
 }
 
