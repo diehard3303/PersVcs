@@ -112,10 +112,11 @@ public class CreateDirStructure {
                     folderPath.add(AppVars.getRepoLocation() + fileNameOnly);
                     configVersionControl(srcFileName, srcPath + SLASH, fileNameOnly);
                     serializeContent(f.toString(), fileNameOnly);
+
                     java.io.File fe = new java.io.File(
-                            new StringBuilder().append(AppVars.getRepoLocation()).append(
-                                    fileNameOnly).append(SLASH).append(
-                                    AppVars.getVersionControlFile()).toString());
+                                          new StringBuilder().append(AppVars.getRepoLocation()).append(
+                                              fileNameOnly).append(SLASH).append(
+                                              AppVars.getVersionControlFile()).toString());
                     int ver = SaveExtractVersionControl.extractVersion(fe);
 
                     CreateEntity.createEntity(f.toString(), srcFileName, AppVars.getRepoLocation() + fileNameOnly, ver);
