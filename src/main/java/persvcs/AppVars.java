@@ -53,6 +53,7 @@ public class AppVars {
     private static final String PERSISTENCE_UNIT = "persvcs";
     private static final String CONTENT_VER = "Content_Ver_";
     private static final String CONTENT_VER_EXT = "_.xml";
+    private static String revisionComment;
 
     /**
      * Method description
@@ -142,6 +143,26 @@ public class AppVars {
      */
     public static String getContentVerExt() {
         return CONTENT_VER_EXT;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return   revision comment
+     */
+    public static String getRevisionComment() {
+        return revisionComment;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param revisionComment
+     */
+    public static void setRevisionComment(String revisionComment) {
+        AppVars.revisionComment = revisionComment;
     }
 }
 

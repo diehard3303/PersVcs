@@ -64,6 +64,7 @@ public class ConfigureVersionControl {
      */
     public static void configVersionControl(String srcfileName, String srcFilePath, String srcNameNoX) {
         Date d = new Date();
+        String fileExt = new javaxt.io.File(srcfileName).getExtension();
         VersionControlFile vc = new VersionControlFile();
         File fi = new File(new StringBuilder().append(srcFilePath).append(srcfileName).toString());
 

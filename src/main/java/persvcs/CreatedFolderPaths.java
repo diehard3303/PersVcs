@@ -39,7 +39,7 @@ package persvcs;
 //~--- JDK imports ------------------------------------------------------------
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -48,8 +48,8 @@ import java.util.List;
  * Time: 2:52 PM
  * Original Project: PersVcs
  */
-public class CreatedFolderPaths implements Serializable {
-    private List<String> folderPaths;
+public class CreatedFolderPaths extends ArrayList<String> implements Serializable {
+    private ArrayList<String> folderPaths;
 
     /**
      * Method description
@@ -57,7 +57,7 @@ public class CreatedFolderPaths implements Serializable {
      *
      * @param folderPaths
      */
-    public void setFolderPaths(List<String> folderPaths) {
+    public void setFolderPaths(ArrayList<String> folderPaths) {
         this.folderPaths = folderPaths;
     }
 
@@ -65,9 +65,9 @@ public class CreatedFolderPaths implements Serializable {
      * Method description
      *
      *
-     * @return list of folder paths
+     * @return array list of folder paths
      */
-    public List<String> getFolderPaths() {
+    public ArrayList<String> getFolderPaths() {
         return folderPaths;
     }
 }

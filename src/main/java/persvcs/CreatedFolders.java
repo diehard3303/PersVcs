@@ -40,6 +40,7 @@ package persvcs;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,16 +50,16 @@ import java.util.List;
  * Time: 2:38 PM
  * Original Project: PersVcs
  */
-public class CreatedFolders implements Serializable {
-    private List<String> foldersCreated;
+public class CreatedFolders extends ArrayList<String> implements Serializable {
+    private ArrayList<String> foldersCreated;
 
     /**
      * Method description
      *
      *
-     * @return
+     * @return  arrayList of folders created
      */
-    public List<String> getFoldersCreated() {
+    public ArrayList<String> getFoldersCreated() {
         return foldersCreated;
     }
 
@@ -68,7 +69,7 @@ public class CreatedFolders implements Serializable {
      *
      * @param foldersCreated
      */
-    public void setFoldersCreated(List<String> foldersCreated) {
+    public void setFoldersCreated(ArrayList<String> foldersCreated) {
         this.foldersCreated = foldersCreated;
     }
 }

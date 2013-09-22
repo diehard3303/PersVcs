@@ -1,5 +1,5 @@
 /*
- * @(#)ContentSerializer.java   13/09/21
+ * @(#)FindFolders.java   13/09/21
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -36,55 +36,72 @@ either expressed or implied, of the FreeBSD Project.
 
 package persvcs;
 
+//~--- non-JDK imports --------------------------------------------------------
+
+import com.thoughtworks.xstream.XStream;
+
 //~--- JDK imports ------------------------------------------------------------
 
 import java.io.File;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
  * Date: 9/21/13
- * Time: 3:25 PM
+ * Time: 7:48 PM
  * Original Project: PersVcs
  */
-public class ContentSerializer {
-
-    /** Field description */
-    public static final String SLASH = "\\";
+public class FindFolders {
 
     /**
      * Method description
      *
      *
-     * @param srcFilePath
-     * @param fileNameOnly
+     * @param fileName
+     *
+     * @return folder path
      */
-    public static void serializeContent(String srcFilePath, String fileNameOnly) {
-        VersionFileContent vfc = new VersionFileContent();
-        File fc = new File(
-                      new StringBuilder().append(AppVars.getRepoLocation()).append(fileNameOnly).append(SLASH).append(
-                          AppVars.getVersionControlFile()).toString());
-        VersionControlFile vcf = SaveExtractVersionControl.extractVersionControl(fc);
-        File fv = new File(
-                      new StringBuilder().append(AppVars.getRepoLocation()).append(fileNameOnly).append(SLASH).append(
-                      AppVars.getVersionControlFile()).toString());
-        File fContent = new File(srcFilePath);
+    public static String findFolderPath(String fileName) {
+        String folder;
+        ArrayList<String> folders = extractFolders();
+        ArrayList<String> folderPath = extractFolderPath();
 
-        vfc.setCurrentVersion(SaveExtractVersionControl.extractVersion(fv));
-        vfc.setMd5Hash(SaveExtractVersionControl.extractMD5Hash(fv));
-        vfc.setRepoFileLocation(vcf.getSrcFileLocation());
-        vfc.setRepoFileLocation(vcf.getRepoFileLocation());
-        vfc.setSrcFileName(fileNameOnly);
-        vfc.setEditTime(vcf.getEditTime());
-        vfc.setRevisionComment("Latest Update");
-        vfc.setSrcContent(ReadWrite.readToByte(fContent));
+        folder = folders.contains(fileName) ? folderPath.get(folders.indexOf(fileName)) : null;
 
-        Serializer sr = new Serializer();
+        return folder;
+    }
 
-        sr.serializeObject(
-            new StringBuilder().append(AppVars.getRepoLocation()).append(fileNameOnly).append(SLASH).append(
-                AppVars.getContentVer()).append(vcf.getCurrentVersion()).append(
-                AppVars.getContentVerExt()).toString(), vfc);
+    /**
+     * Method description
+     *
+     *
+     *
+     * @return  Created Folder Paths object
+     */
+    private static CreatedFolderPaths extractFolderPath() {
+        XStream xs = new XStream();
+        CreatedFolderPaths cfp = (CreatedFolderPaths) xs.fromXML(
+                                     new StringBuilder().append(AppVars.getRepoLocation()).append(
+                                         AppVars.getCreatedFolderPaths()).toString());
+
+        return (CreatedFolderPaths) cfp.getFolderPaths();
+    }
+
+    /**
+     * Method description
+     *
+     * @return  Created Folder Paths object
+     */
+    private static CreatedFolders extractFolders() {
+        XStream xs = new XStream();
+        CreatedFolders cf = (CreatedFolders) xs.fromXML(
+                                new StringBuilder().append(AppVars.getRepoLocation()).append(
+                                    AppVars.getCreatedFolders()).toString());
+
+        return (CreatedFolders) cf.getFoldersCreated();
     }
 }
 

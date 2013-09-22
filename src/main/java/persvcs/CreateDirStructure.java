@@ -38,15 +38,16 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javaxt.io.Directory;
 import javaxt.io.File;
 
+import static persvcs.ConfigureVersionControl.configVersionControl;
+import static persvcs.ContentSerializer.serializeContent;
+
 //~--- JDK imports ------------------------------------------------------------
-
-import java.nio.file.Path;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -59,6 +60,7 @@ public class CreateDirStructure {
 
     /** Field description */
     public static final String UnderScore = "_";
+    public static final String SLASH = "\\";
 
     /**
      * Method description
@@ -71,11 +73,12 @@ public class CreateDirStructure {
         ArrayList<String> fileName = new ArrayList<String>(dirList.size());
         ArrayList<String> folderPath = new ArrayList<String>(dirList.size());
 
-        for (Object f : dirList) {
+        for (Iterator<String> iterator = dirList.iterator(); iterator.hasNext(); ) {
+            Object f = iterator.next();
             if (f != null) {
                 String srcPath = new File(f.toString()).getDirectory().toString();
                 String srcFileName = new File(f.toString()).getName();
-                javaxt.io.File gff = new javaxt.io.File(f.toString());
+                File gff = new File(f.toString());
                 String fileNameOnly = gff.getName(false);
 
                 if (fileNameOnly.equals(oldName)) {
@@ -86,16 +89,16 @@ public class CreateDirStructure {
                     di.create();
                     fileName.add(srcFileName);
                     folderPath.add(AppVars.getRepoLocation() + fileNameOnly);
-                    ConfigureVersionControl.configVersionControl(srcFileName, srcPath + "\\", fileNameOnly);
-                    ContentSerializer.serializeContent(srcPath + srcFileName, fileNameOnly);
+                    configVersionControl(srcFileName, srcPath + SLASH, fileNameOnly);
+                    serializeContent(srcPath + srcFileName, fileNameOnly);
                 } else {
                     Directory di = new Directory(AppVars.getRepoLocation() + fileNameOnly);
 
                     di.create();
                     fileName.add(srcFileName);
                     folderPath.add(AppVars.getRepoLocation() + fileNameOnly);
-                    ConfigureVersionControl.configVersionControl(srcFileName, srcPath + "\\", fileNameOnly);
-                    ContentSerializer.serializeContent(f.toString(), fileNameOnly);
+                    configVersionControl(srcFileName, srcPath + SLASH, fileNameOnly);
+                    serializeContent(f.toString(), fileNameOnly);
                 }
 
                 oldName = fileNameOnly;

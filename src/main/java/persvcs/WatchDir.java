@@ -38,13 +38,11 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
-import java.util.Date;
 import javaxt.io.Directory;
-
-
 
 //~--- JDK imports ------------------------------------------------------------
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -55,9 +53,7 @@ import java.util.List;
  * Original Project: PersVcs
  */
 public class WatchDir {
-    private static String oldName = "";
-    final Date dTime = new Date();
-    private static  String dirPath;
+    private static String dirPath;
 
     /**
      * Method description
@@ -89,9 +85,8 @@ public class WatchDir {
 
                 event = (Directory.Event) events.remove(0);
 
-                if ((event.getEventID() == event.MODIFY) && event.toString().contains("Modify")) {
-                    if (new java.io.File(event.getFile()).exists()) {}
-                }
+                if ((event.getEventID() == event.MODIFY) && event.toString().contains("Modify")
+                        && new java.io.File(event.getFile()).exists()) {}
 
                 if ((event.getEventID() == event.CREATE) && event.toString().contains("Create")) {}
 

@@ -1,5 +1,5 @@
 /*
- * @(#)GetFileListing.java   13/09/21
+ * @(#)CheckFiles.java   13/09/21
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -38,9 +38,12 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
-import javaxt.io.Directory;
+import org.apache.commons.io.FileUtils;
 
 //~--- JDK imports ------------------------------------------------------------
+
+import java.io.File;
+import java.io.IOException;
 
 import java.util.List;
 
@@ -48,54 +51,100 @@ import java.util.List;
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
  * Date: 9/21/13
- * Time: 11:57 AM
+ * Time: 8:15 PM
  * Original Project: PersVcs
  */
-public class GetFileListing {
-    public static final String SLASH = "\\";
-    private String dirPath;
-    private String filter;
+public class CheckFiles {
+    private List<String> textlines = null;
+    private List<String> imageMime = null;
+    private List<String> illegalExt = null;
 
     /**
      * Method description
      *
      *
-     * @param dirPath
-     *
-     * @return   file listing all
      */
-    public List<String> getFileListing(String dirPath) {
-        this.dirPath = dirPath + SLASH;
+    private void convertMime() {
+        try {
+            setTextlines(FileUtils.readLines(new File(AppVars.getRepoLocation() + "textMime.txt"), "utf-8"));
+            setImageMime(FileUtils.readLines(new File(AppVars.getRepoLocation() + "imageMime.txt"), "utf-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-        Directory directory = new Directory(this.dirPath);
-        List<String> files;
-
-        /* Return a list of all files found in the current directory */
-        files = directory.getChildren(true, "*.*", true);
-
-        return files;
+    private void convertIllegalExt() {
+        try {
+            setIllegalExt(FileUtils.readLines(new File(AppVars.getRepoLocation() + "illegalExtensions.txt"), "utf-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Method description
      *
      *
-     * @param dirPath
-     * @param filter
-     *
-     * @return   file listing filtered
+     * @return   txt mime list
      */
-    public List<String> getFileListing(String dirPath, String filter) {
-        this.dirPath = dirPath + SLASH;
-        this.filter = filter;
+    public List<String> getTextlines() {
+        convertMime();
 
-        Directory directory = new Directory(this.dirPath);
-        List<String> files;
+        return textlines;
+    }
 
-        /* Return a list of all files found in the current directory */
-        files = directory.getChildren(true, this.filter, true);
+    /**
+     * Method description
+     *
+     *
+     * @param textlines
+     */
+    private void setTextlines(List<String> textlines) {
+        this.textlines = textlines;
+    }
 
-        return files;
+    /**
+     * Method description
+     *
+     *
+     * @return   img mime list
+     */
+    public List<String> getImageMime() {
+        convertMime();
+
+        return imageMime;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param imageMime
+     */
+    private void setImageMime(List<String> imageMime) {
+        this.imageMime = imageMime;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public List<String> getIllegalExt() {
+        convertIllegalExt();
+
+        return illegalExt;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param illegalExt
+     */
+    private void setIllegalExt(List<String> illegalExt) {
+        this.illegalExt = illegalExt;
     }
 }
 
