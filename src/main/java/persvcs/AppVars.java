@@ -1,5 +1,5 @@
 /*
- * @(#)AppVars.java   13/09/21
+ * @(#)AppVars.java   13/09/22
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -53,6 +53,10 @@ public class AppVars {
     private static final String PERSISTENCE_UNIT = "DvVcs";
     private static final String CONTENT_VER = "Content_Ver_";
     private static final String CONTENT_VER_EXT = "_.xml";
+    private static String mType = "";
+    private static String mExt = "";
+    private static String mFileName = "";
+    private static String mFileNameFull = "";
     private static String revisionComment;
 
     /**
@@ -164,7 +168,63 @@ public class AppVars {
     public static void setRevisionComment(String revisionComment) {
         AppVars.revisionComment = revisionComment;
     }
+
+    /**
+     * Method description
+     *
+     *
+     * @param file
+     *
+     * @return   Mime Content type for file
+     */
+    public static String getMimeType(String file) {
+        mType = new javaxt.io.File(file).getContentType();
+
+        return mType;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param file
+     *
+     * @return   file extension
+     */
+    public static String getExtOnly(String file) {
+        mExt = new javaxt.io.File(file).getExtension();
+
+        return mExt;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param file
+     *
+     * @return  just filename without extension
+     */
+    public static String getFileNameOnly(String file) {
+        mFileName = new javaxt.io.File(file).getName(false);
+
+        return mFileName;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param file
+     *
+     * @return   full file name no path
+     */
+    public static String getFileNameFull(String file) {
+        mFileNameFull = new javaxt.io.File(file).getName();
+
+        return mFileNameFull;
+    }
 }
 
 
-//~ Formatted in DD Std on 13/09/21
+//~ Formatted in DD Std on 13/09/22

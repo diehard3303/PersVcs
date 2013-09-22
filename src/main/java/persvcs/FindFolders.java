@@ -93,7 +93,7 @@ public class FindFolders {
     /**
      * Method description
      *
-     * @return  Created Folder Paths object
+     * @return  Created Folders object
      */
     private static CreatedFolders extractFolders() {
         XStream xs = new XStream();

@@ -1,5 +1,5 @@
 /*
- * @(#)CreateDirStructure.java   13/09/21
+ * @(#)CreateDirStructure.java   13/09/22
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -41,6 +41,7 @@ package persvcs;
 import javaxt.io.Directory;
 import javaxt.io.File;
 
+import static persvcs.AppVars.*;
 import static persvcs.ConfigureVersionControl.configVersionControl;
 
 import static persvcs.ContentSerializer.serializeContent;
@@ -82,44 +83,43 @@ public class CreateDirStructure {
 
             if (f != null) {
                 String srcPath = new File(f.toString()).getDirectory().toString();
-                String srcFileName = new File(f.toString()).getName();
-                File gff = new File(f.toString());
-                String fileNameOnly = gff.getName(false);
+                String srcFileName = getFileNameFull(f.toString());
+                String fileNameOnly = getFileNameOnly(f.toString());
 
                 if (fileNameOnly.equals(oldName)) {
-                    fileNameOnly = fileNameOnly + UnderScore + gff.getExtension();
+                    fileNameOnly = fileNameOnly + UnderScore + getExtOnly(f.toString());
 
-                    Directory di = new Directory(AppVars.getRepoLocation() + fileNameOnly);
+                    Directory di = new Directory(getRepoLocation() + fileNameOnly);
 
                     di.create();
                     fileName.add(srcFileName);
-                    folderPath.add(AppVars.getRepoLocation() + fileNameOnly);
+                    folderPath.add(getRepoLocation() + fileNameOnly);
                     configVersionControl(srcFileName, srcPath + SLASH, fileNameOnly);
                     serializeContent(srcPath + srcFileName, fileNameOnly);
 
                     java.io.File fe = new java.io.File(
-                                          new StringBuilder().append(AppVars.getRepoLocation()).append(
+                                          new StringBuilder().append(getRepoLocation()).append(
                                               fileNameOnly).append(SLASH).append(
-                                              AppVars.getVersionControlFile()).toString());
+                                              getVersionControlFile()).toString());
                     int ver = SaveExtractVersionControl.extractVersion(fe);
 
-                    CreateEntity.createEntity(f.toString(), srcFileName, AppVars.getRepoLocation() + fileNameOnly, ver);
+                    CreateEntity.createEntity(f.toString(), srcFileName, getRepoLocation() + fileNameOnly, ver);
                 } else {
-                    Directory di = new Directory(AppVars.getRepoLocation() + fileNameOnly);
+                    Directory di = new Directory(getRepoLocation() + fileNameOnly);
 
                     di.create();
                     fileName.add(srcFileName);
-                    folderPath.add(AppVars.getRepoLocation() + fileNameOnly);
+                    folderPath.add(getRepoLocation() + fileNameOnly);
                     configVersionControl(srcFileName, srcPath + SLASH, fileNameOnly);
                     serializeContent(f.toString(), fileNameOnly);
 
                     java.io.File fe = new java.io.File(
-                                          new StringBuilder().append(AppVars.getRepoLocation()).append(
+                                          new StringBuilder().append(getRepoLocation()).append(
                                               fileNameOnly).append(SLASH).append(
-                                              AppVars.getVersionControlFile()).toString());
+                                              getVersionControlFile()).toString());
                     int ver = SaveExtractVersionControl.extractVersion(fe);
 
-                    CreateEntity.createEntity(f.toString(), srcFileName, AppVars.getRepoLocation() + fileNameOnly, ver);
+                    CreateEntity.createEntity(f.toString(), srcFileName, getRepoLocation() + fileNameOnly, ver);
                 }
 
                 oldName = fileNameOnly;
@@ -138,11 +138,11 @@ public class CreateDirStructure {
 
         Serializer sr = new Serializer();
 
-        sr.serializeObject(AppVars.getRepoLocation() + AppVars.getCreatedFolders(), cf);
+        sr.serializeObject(getRepoLocation() + getCreatedFolders(), cf);
         sr = new Serializer();
-        sr.serializeObject(AppVars.getRepoLocation() + AppVars.getCreatedFolderPaths(), cfp);
+        sr.serializeObject(getRepoLocation() + getCreatedFolderPaths(), cfp);
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/21
+//~ Formatted in DD Std on 13/09/22
