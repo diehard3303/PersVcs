@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sun Sep 22 22:45:29 EDT 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0141-48b5-1699-000000384bb0 
+on database directory D:\home\dvvcs with class loader sun.misc.Launcher$AppClassLoader@1a7bf11 
+Loaded from file:/D:/GitHub/PersVcs/lib/derby-10.10.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_40-b43
+user.dir=D:\GitHub\PersVcs
+os.name=Windows 8
+os.arch=x86
+os.version=6.2
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

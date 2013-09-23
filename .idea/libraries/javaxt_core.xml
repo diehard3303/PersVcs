@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="javaxt-core">
+    <CLASSES>
+      <root url="jar://$LOCAL_LIBRARIES$/JavaXT/bin/javaxt-core.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$LOCAL_LIBRARIES$/JavaXT/doc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$LOCAL_LIBRARIES$/JavaXT/src" />
+    </SOURCES>
+  </library>
+</component>
