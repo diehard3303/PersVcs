@@ -96,10 +96,12 @@ import static javax.swing.JFileChooser.FILE_FILTER_CHANGED_PROPERTY;
  * Original Project: PersVcs
  */
 public class Main extends JFrame {
+
     /** Field description */
     public static final String CONTENT_SELECTOR = "*Content*.*";
     private static final String VERSION_QUERY = "SELECT e FROM VersiontablePers e";
     private static JocTable jt = new JocTable();
+    private static JLabel lblMd5, lblVersion, lblFileName, lblEditTime, lblRepo, lblSrcLocation;
     private static JMenuBar menuBar;
     private static JMenu mnFile;
     private static JMenuItem mntmExit;
@@ -113,7 +115,6 @@ public class Main extends JFrame {
     private static JScrollPane js, jsl;
     private static JButton btnMonitor, btnClearDb, btnRefresh;
     private static JFileChooser jfc;
-    private static JLabel lblMd5, lblVersion, lblFileName, lblEditTime, lblRepo, lblSrcLocation;
 
     /**
      * Method description
@@ -148,7 +149,7 @@ public class Main extends JFrame {
         setUpJlist();
         jsl = new JScrollPane();
         jsl.setViewportView(repoList);
-        jsl.setBounds(5, 345, 330, 280);
+        jsl.setBounds(5, 345, 390, 280);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
@@ -175,7 +176,7 @@ public class Main extends JFrame {
 
     private static void buildButtons() {
         btnRefresh = new JButton("Refresh Database");
-        btnRefresh.setBounds(725, 590, 180, 26);
+        btnRefresh.setBounds(785, 590, 180, 26);
         btnRefresh.setToolTipText("Click to refresh data");
         btnRefresh.addActionListener(new ActionListener() {
             @Override
@@ -184,17 +185,18 @@ public class Main extends JFrame {
             }
         });
         btnClearDb = new JButton("Clear Database Values");
-        btnClearDb.setBounds(535, 590, 180, 26);
+        btnClearDb.setBounds(595, 590, 180, 26);
         btnClearDb.setToolTipText("Click to clear Database Values");
         btnClearDb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 destroyDb();
                 clearList();
+                clearLabels();
             }
         });
         btnMonitor = new JButton("Choose Folder to Monitor");
-        btnMonitor.setBounds(345, 590, 180, 26);
+        btnMonitor.setBounds(405, 590, 180, 26);
         btnMonitor.setToolTipText("Choose a folder to Version files in");
         btnMonitor.addActionListener(new ActionListener() {
             @Override
@@ -255,26 +257,18 @@ public class Main extends JFrame {
 
                 if (tmpRow > -1) {
                     String repoPath = (String) jt.getModel().getValueAt(tmpRow, 4);
-                    File fvc = new File(repoPath + AppVars.getVersionControlFile());
-                    VersionControlFile vcf = SaveExtractVersionControl.extractVersionControl(fvc);
 
-                    lblMd5.setText("MD5 Hash: " + vcf.getMd5Hash());
-                    lblFileName.setText("File Name: " + vcf.getSrcFileName());
-                    lblEditTime.setText("Last Edit Time: " + vcf.getEditTime().toString());
-                    lblRepo.setText("Repository Path: " + vcf.getRepoFileLocation());
-                    lblSrcLocation.setText("Src Location: " + vcf.getSrcFileLocation());
-                    lblVersion.setText("Version: " + String.valueOf(vcf.getCurrentVersion()));
-
-                    Directory di = new Directory(repoPath);
-                    List repo = di.getChildren(true, CONTENT_SELECTOR, true);
-
-                    rebuildVersionList(repo);
+                    setLabelValues(repoPath);
+                    rebuildVersionList(repoPath);
                 }
             }
         });
     }
 
-    private static void rebuildVersionList(List repo) {
+    private static void rebuildVersionList(String repoPath) {
+        Directory di = new Directory(repoPath);
+        List repo = di.getChildren(true, CONTENT_SELECTOR, true);
+
         frame.getContentPane().remove(jsl);
         frame.getContentPane().validate();
         frame.getContentPane().repaint();
@@ -282,33 +276,48 @@ public class Main extends JFrame {
         setUpJlist();
         jsl = new JScrollPane();
         jsl.setViewportView(repoList);
-        jsl.setBounds(5, 345, 330, 280);
+        jsl.setBounds(5, 345, 390, 280);
         frame.getContentPane().add(jsl);
         frame.pack();
     }
 
-    private static void setLabelValues(VersionControlFile vcf) {
+    private static void setLabelValues(String repoPath) {
+        File fvc = new File(new StringBuilder().append(repoPath).append(AppVars.getVersionControlFile()).toString());
+        VersionControlFile vcf = SaveExtractVersionControl.extractVersionControl(fvc);
+
         lblMd5.setText("MD5 Hash: " + vcf.getMd5Hash());
         lblFileName.setText("File Name: " + vcf.getSrcFileName());
         lblEditTime.setText("Last Edit Time: " + vcf.getEditTime().toString());
         lblRepo.setText("Repository Path: " + vcf.getRepoFileLocation());
         lblSrcLocation.setText("Src Location: " + vcf.getSrcFileLocation());
         lblVersion.setText("Version: " + String.valueOf(vcf.getCurrentVersion()));
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
+        frame.pack();
+    }
+
+    private static void clearLabels(){
+        lblMd5.setText("MD5 Hash: ");
+        lblFileName.setText("File Name: ");
+        lblEditTime.setText("Last Edit Time: ");
+        lblRepo.setText("Repository Path: ");
+        lblSrcLocation.setText("Src Location: ");
+        lblVersion.setText("Version: ");
     }
 
     private static void buildLabels() {
         lblMd5 = new JLabel("MD5 Hash: ");
-        lblMd5.setBounds(340, 350, 300, 24);
+        lblMd5.setBounds(400, 350, 400, 24);
         lblFileName = new JLabel("File Name: ");
-        lblFileName.setBounds(340, 380, 300, 24);
+        lblFileName.setBounds(400, 380, 400, 24);
         lblEditTime = new JLabel("Last Edit Time: ");
-        lblEditTime.setBounds(340, 410, 300, 24);
+        lblEditTime.setBounds(400, 410, 400, 24);
         lblRepo = new JLabel("Repository Path: ");
-        lblRepo.setBounds(340, 440, 300, 24);
+        lblRepo.setBounds(400, 440, 600, 24);
         lblSrcLocation = new JLabel("Src Location: ");
-        lblSrcLocation.setBounds(340, 470, 300, 24);
+        lblSrcLocation.setBounds(400, 470, 600, 24);
         lblVersion = new JLabel("Version: ");
-        lblVersion.setBounds(340, 500, 300, 24);
+        lblVersion.setBounds(400, 500, 400, 24);
     }
 
     private static void setUpJlist() {
@@ -333,9 +342,10 @@ public class Main extends JFrame {
         repoList = new JList();
         jsl = new JScrollPane();
         jsl.setViewportView(repoList);
-        jsl.setBounds(5, 345, 330, 280);
+        jsl.setBounds(5, 345, 390, 280);
         frame.getContentPane().add(jsl);
         frame.pack();
+
     }
 
     private static void destroyDb() {
@@ -354,7 +364,6 @@ public class Main extends JFrame {
         }
 
         rebuildTableView();
-        buildLabels();
     }
 
     private static void buildScrollPane() {

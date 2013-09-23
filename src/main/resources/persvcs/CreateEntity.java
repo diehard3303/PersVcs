@@ -50,7 +50,7 @@ import javax.persistence.Persistence;
  */
 public class CreateEntity {
 
-    public static final String SLASH = "\\";
+    public static final String SLASH = "//";
 
     /**
      * Method description

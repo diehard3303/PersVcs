@@ -50,7 +50,7 @@ import java.io.File;
 public class ContentSerializer {
 
     /** Field description */
-    public static final String SLASH = "\\";
+    public static final String SLASH = "//";
 
     /**
      * Method description
