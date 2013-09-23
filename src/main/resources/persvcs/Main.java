@@ -329,7 +329,8 @@ public class Main extends JFrame {
                 if (repoList.getSelectedValue() != null) {
                     String select = repoList.getSelectedValue().toString();
 
-                    ContentExtractor.extractContent(select);
+                    String tmp = ContentExtractor.extractContent(select);
+                    InfoDialog.showInfo(tmp);
                 }
             }
         });

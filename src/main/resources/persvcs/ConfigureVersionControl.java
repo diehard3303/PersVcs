@@ -84,10 +84,13 @@ public class ConfigureVersionControl {
 
                 i++;
                 vc.setCurrentVersion(i);
+                AppVars.setRevisionComment("Externally changed since last reload.");
             } else {
+                AppVars.setRevisionComment("Latest Reload.");
                 vc.setCurrentVersion(SaveExtractVersionControl.extractVersion(f));
             }
         } else {
+            AppVars.setRevisionComment("Latest Reload.");
             vc.setCurrentVersion(1);
         }
 

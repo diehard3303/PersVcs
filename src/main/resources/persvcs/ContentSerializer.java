@@ -77,7 +77,7 @@ public class ContentSerializer {
         vfc.setRepoFileLocation(vcf.getRepoFileLocation());
         vfc.setSrcFileName(srcFileName);
         vfc.setEditTime(vcf.getEditTime());
-        vfc.setRevisionComment("Latest Update");
+        vfc.setRevisionComment(AppVars.getRevisionComment());
         vfc.setSrcContent(ReadWrite.readToByte(fContent));
 
         Serializer sr = new Serializer();

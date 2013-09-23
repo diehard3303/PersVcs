@@ -1,5 +1,5 @@
 /*
- * @(#)ContentExtractor.java   13/09/22
+ * @(#)InfoDialog.java   13/09/22
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -36,51 +36,46 @@ either expressed or implied, of the FreeBSD Project.
 
 package persvcs;
 
-//~--- non-JDK imports --------------------------------------------------------
-
-import com.thoughtworks.xstream.XStream;
-
 //~--- JDK imports ------------------------------------------------------------
 
-import java.awt.Desktop;
+import java.awt.Dimension;
 
-import java.io.File;
-import java.io.IOException;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
  * Date: 9/22/13
- * Time: 5:56 PM
+ * Time: 9:44 PM
  * Original Project: PersVcs
  */
-public class ContentExtractor {
+public class InfoDialog extends JDialog {
 
     /**
-     * Method description:
-     * Extract content then write file and execute
-     * system default application
+     * Method description
      *
-     * @param fileName
      *
-     * @return
+     * @param info
      */
-    public static String extractContent(String fileName) {
-        XStream xs = new XStream();
-        File fe = new File(fileName);
-        VersionFileContent vs = (VersionFileContent) xs.fromXML(fe);
+    public static void showInfo(String info) {
+        JDialog jd = new JDialog();
+        JScrollPane js = new JScrollPane();
+        JTextArea jt = new JTextArea();
 
-        ReadWrite.readFromByte(vs.getSrcContent(), AppVars.getTempPath() + vs.getSrcFileName());
-
-        File fs = new File(AppVars.getTempPath() + vs.getSrcFileName());
-
-        try {
-            Desktop.getDesktop().open(fs);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return vs.getRevisionComment();
+        js.setBounds(0, 0, 385, 295);
+        js.setViewportView(jt);
+        jt.setLineWrap(true);
+        jt.setText("Revision Comment:  " + info);
+        jd.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        jd.setLocationRelativeTo(null);
+        jd.getContentPane().add(js);
+        jd.setPreferredSize(new Dimension(400, 300));
+        jd.pack();
+        jd.setVisible(true);
     }
 }
 
