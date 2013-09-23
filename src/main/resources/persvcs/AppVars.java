@@ -36,6 +36,11 @@ either expressed or implied, of the FreeBSD Project.
 
 package persvcs;
 
+import java.io.IOException;
+import java.util.List;
+import javaxt.io.File;
+import org.apache.commons.io.FileUtils;
+
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
@@ -58,6 +63,8 @@ public class AppVars {
     private static String mFileName = "";
     private static String mFileNameFull = "";
     private static String revisionComment;
+    private static List<String> illegalExt;
+    private static final String ILLEGAL_EXTENSIONS_EDIT = REPO_PATH + "illegalExtensions.txt";
 
     /**
      * Method description
@@ -223,6 +230,20 @@ public class AppVars {
         mFileNameFull = new javaxt.io.File(file).getName();
 
         return mFileNameFull;
+    }
+
+    public static List<String> getIllegalExt() {
+        java.io.File fi = new java.io.File(getRepoLocation() + "illegalExtensions.txt");
+        try {
+            illegalExt = FileUtils.readLines(fi, "utf-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return illegalExt;
+    }
+
+    public static String getIllegalExtensionsEdit() {
+        return ILLEGAL_EXTENSIONS_EDIT;
     }
 }
 

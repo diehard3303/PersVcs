@@ -61,19 +61,20 @@ public class InfoDialog extends JDialog {
      *
      * @param info
      */
-    public static void showInfo(String info) {
+    public static void showInfo(String info, String title) {
         JDialog jd = new JDialog();
         JScrollPane js = new JScrollPane();
         JTextArea jt = new JTextArea();
 
-        js.setBounds(0, 0, 385, 295);
+        js.setBounds(0, 0, 585, 295);
         js.setViewportView(jt);
         jt.setLineWrap(true);
         jt.setText("Revision Comment:  " + info);
         jd.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         jd.setLocationRelativeTo(null);
         jd.getContentPane().add(js);
-        jd.setPreferredSize(new Dimension(400, 300));
+        jd.setTitle(title);
+        jd.setPreferredSize(new Dimension(590, 300));
         jd.pack();
         jd.setVisible(true);
     }

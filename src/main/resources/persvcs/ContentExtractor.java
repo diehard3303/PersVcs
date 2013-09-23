@@ -73,11 +73,14 @@ public class ContentExtractor {
         ReadWrite.readFromByte(vs.getSrcContent(), AppVars.getTempPath() + vs.getSrcFileName());
 
         File fs = new File(AppVars.getTempPath() + vs.getSrcFileName());
+        String fileExt = new javaxt.io.File(fs).getExtension();
 
-        try {
-            Desktop.getDesktop().open(fs);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!AppVars.getIllegalExt().contains(fileExt)) {
+            try {
+                Desktop.getDesktop().open(fs);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return vs.getRevisionComment();

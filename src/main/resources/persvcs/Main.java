@@ -50,6 +50,7 @@ import org.jdesktop.swingbinding.SwingBindings;
 
 //~--- JDK imports ------------------------------------------------------------
 
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,6 +58,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import java.io.File;
+import java.io.IOException;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -86,7 +88,6 @@ import static java.beans.Beans.isDesignTime;
 import static java.util.Collections.emptyList;
 
 import static javax.swing.JFileChooser.DIRECTORIES_ONLY;
-import static javax.swing.JFileChooser.FILE_FILTER_CHANGED_PROPERTY;
 
 /**
  * Created with IntelliJ IDEA.
@@ -103,8 +104,8 @@ public class Main extends JFrame {
     private static JocTable jt = new JocTable();
     private static JLabel lblMd5, lblVersion, lblFileName, lblEditTime, lblRepo, lblSrcLocation;
     private static JMenuBar menuBar;
-    private static JMenu mnFile;
-    private static JMenuItem mntmExit;
+    private static JMenu mnFile, mnConfig;
+    private static JMenuItem mntmExit, mntmConfig;
     private static JList repoList;
     private static JFrame frame;
     private static JTableBinding jTableBinding;
@@ -233,8 +234,24 @@ public class Main extends JFrame {
         menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);
         mnFile = new JMenu("File");
+        mnConfig = new JMenu("Configure");
         menuBar.add(mnFile);
+        menuBar.add(mnConfig);
         mntmExit = new JMenuItem("Exit");
+        mntmConfig =
+            new JMenuItem("Edit Illegal Extensions (Files that you don't want to view when selected like 'exe' files)");
+        mntmConfig.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                File fi = new File(AppVars.getIllegalExtensionsEdit());
+
+                try {
+                    Desktop.getDesktop().open(fi);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         mntmExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -242,6 +259,7 @@ public class Main extends JFrame {
             }
         });
         mnFile.add(mntmExit);
+        mnConfig.add(mntmConfig);
         activateMouseListener();
     }
 
@@ -296,7 +314,7 @@ public class Main extends JFrame {
         frame.pack();
     }
 
-    private static void clearLabels(){
+    private static void clearLabels() {
         lblMd5.setText("MD5 Hash: ");
         lblFileName.setText("File Name: ");
         lblEditTime.setText("Last Edit Time: ");
@@ -328,9 +346,9 @@ public class Main extends JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 if (repoList.getSelectedValue() != null) {
                     String select = repoList.getSelectedValue().toString();
-
                     String tmp = ContentExtractor.extractContent(select);
-                    InfoDialog.showInfo(tmp);
+
+                    InfoDialog.showInfo(tmp, "Revision Comment for:" + select);
                 }
             }
         });
@@ -346,7 +364,6 @@ public class Main extends JFrame {
         jsl.setBounds(5, 345, 390, 280);
         frame.getContentPane().add(jsl);
         frame.pack();
-
     }
 
     private static void destroyDb() {
