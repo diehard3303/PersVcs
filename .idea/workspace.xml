@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c30d29e7-b330-437f-8c55-416684c9d4ca" name="Default" comment="" />
+    <list default="true" id="c30d29e7-b330-437f-8c55-416684c9d4ca" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/CheckPreExisting.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/SearchFolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/AppVars.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/AppVars.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/CreateDirStructure.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/CreateDirStructure.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/GetFileListing.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/GetFileListing.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/Serializer.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/Serializer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/TJ.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/TJ.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/WatchDir.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/WatchDir.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/derby.log" afterPath="$PROJECT_DIR$/derby.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="PersVcs.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/persistence.xml" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379862943289" ignored="false" />
@@ -16,16 +27,16 @@
     <file path="/VersionFileContent.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379790892332" ignored="false" />
     <file path="/VersionControlFile.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379787770600" ignored="false" />
     <file path="/ReadWrite.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379778545838" ignored="false" />
-    <file path="/Dummy.txt" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379904586102" ignored="false" />
-    <file path="/WatchDir.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379782166704" ignored="false" />
-    <file path="/GetFileListing.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379882825831" ignored="false" />
-    <file path="/CreateDirStructure.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379858820318" ignored="false" />
-    <file path="/AppVars.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379903701145" ignored="false" />
+    <file path="/Dummy.txt" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380026872029" ignored="false" />
+    <file path="/WatchDir.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380034416089" ignored="false" />
+    <file path="/GetFileListing.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380034384906" ignored="false" />
+    <file path="/CreateDirStructure.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380037908749" ignored="false" />
+    <file path="/AppVars.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380034266242" ignored="false" />
     <file path="/ConfigureVersionControl.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379899105456" ignored="false" />
     <file path="/main.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379783519624" ignored="false" />
     <file path="/Main.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379904474850" ignored="false" />
     <file path="/Hasher.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379860467356" ignored="false" />
-    <file path="/Serializer.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379788703112" ignored="false" />
+    <file path="/Serializer.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380037874663" ignored="false" />
     <file path="/CreatedFolders.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379808097093" ignored="false" />
     <file path="/CreatedFolderPaths.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379808109646" ignored="false" />
     <file path="/SaveVersionControl.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379791054317" ignored="false" />
@@ -38,6 +49,8 @@
     <file path="/a.dummy" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379861816260" ignored="false" />
     <file path="/ContentExtractor.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379903447928" ignored="false" />
     <file path="/InfoDialog.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379901541142" ignored="false" />
+    <file path="/Searchfolder.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380039630763" ignored="false" />
+    <file path="/CheckPreExisting.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380041475042" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +71,7 @@
   </component>
   <component name="DebuggerManager">
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -94,7 +108,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -107,24 +120,67 @@
       <file leaf-file-name="AppVars.java" pinned="true" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/AppVars.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="241" column="43" selection-start="6223" selection-end="6223" vertical-scroll-proportion="0.0">
+            <state line="65" column="64" selection-start="2658" selection-end="2658" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchFolder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/SearchFolder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="53" column="45" selection-start="2036" selection-end="2036" vertical-scroll-proportion="0.0">
               <folding>
+                <element signature="e#0#2425#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="true" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/Main.java">
+      <file leaf-file-name="CreateDirStructure.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CreateDirStructure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="370" column="109" selection-start="13325" selection-end="13325" vertical-scroll-proportion="0.18722786">
+            <state line="91" column="33" selection-start="3455" selection-end="3455" vertical-scroll-proportion="0.0">
               <folding>
+                <element signature="e#2932#2940#0" expanded="true" />
+                <element signature="e#3010#3018#0" expanded="true" />
+                <element signature="e#3091#3099#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Serializer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/Serializer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="96" column="67" selection-start="3083" selection-end="3144" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#3802#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#8534#8908#0" expanded="true" />
-                <element signature="e#8897#8898#0" expanded="true" />
-                <element signature="e#8946#9106#0" expanded="true" />
-                <element signature="e#9095#9096#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetFileListing.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/GetFileListing.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="76" selection-start="2122" selection-end="2122" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#2890#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckPreExisting.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CheckPreExisting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="83" column="84" selection-start="3053" selection-end="3053" vertical-scroll-proportion="0.4179971">
+              <folding>
+                <element signature="e#0#3780#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -154,22 +210,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/persvcs/FindFolders.java" />
-        <option value="$PROJECT_DIR$/src/main/java/persvcs/Hasher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/persvcs/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/persvcs/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/persvcs/ConfigureVersionControl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/persvcs/SaveExtractVersionControl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/orm.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/persvcs/GetFileListing.java" />
         <option value="$PROJECT_DIR$/src/main/resources/persvcs/CreateEntity.java" />
         <option value="$PROJECT_DIR$/src/main/resources/persvcs/ConfigureVersionControl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/persvcs/ContentSerializer.java" />
         <option value="$PROJECT_DIR$/src/main/resources/persvcs/InfoDialog.java" />
         <option value="$PROJECT_DIR$/src/main/resources/persvcs/ContentExtractor.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/persvcs/AppVars.java" />
         <option value="$PROJECT_DIR$/src/main/resources/persvcs/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/persvcs/GetFileListing.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/persvcs/WatchDir.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/persvcs/AppVars.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/persvcs/CreateDirStructure.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/persvcs/Searchfolder.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/persvcs/SearchFolder.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/persvcs/Serializer.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/persvcs/CheckPreExisting.java" />
       </list>
     </option>
   </component>
@@ -240,6 +296,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -330,13 +388,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/resources" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -350,14 +406,14 @@
     <property name="Database.TableEditor.Splitter" value="0.9" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="FullScreen" value="false" />
-    <property name="Repository.Attach.Sources" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="Repository.Attach.Sources" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="Downloaded.Files.Path" value="D:\GitHub\PersVcs\lib" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="Downloaded.Files.Path" value="D:\GitHub\PersVcs\lib" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -426,19 +482,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -465,6 +508,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -624,13 +680,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24972796" sideWeight="0.23636363" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2257889" sideWeight="0.66477275" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Jindent" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12165178" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Jindent" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12053572" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15227273" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -638,16 +694,16 @@
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17613636" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24493062" sideWeight="0.7979911" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24493062" sideWeight="0.7979911" order="3" side_tool="false" content_ui="combo" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297062" sideWeight="0.3344671" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20200893" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20200893" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297062" sideWeight="0.7943182" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20870535" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20982143" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22098215" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14955357" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1484375" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21077909" sideWeight="0.7979911" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Metrics" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297062" sideWeight="0.7943182" order="5" side_tool="false" content_ui="tabs" />
@@ -737,102 +793,6 @@
     <option name="showOnlyWarnings" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/IllegalOrphanException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="43" selection-start="2250" selection-end="2250" vertical-scroll-proportion="0.6894502">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/orm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="22" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/eclipselink-orm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="48" selection-start="940" selection-end="940" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="33" selection-start="725" selection-end="725" vertical-scroll-proportion="0.2662968">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/VersiontablePers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="13" selection-start="2108" selection-end="2108" vertical-scroll-proportion="-0.7369985">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/VersionFileContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="13" selection-start="1922" selection-end="1922" vertical-scroll-proportion="-1.0936106">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/SaveExtractVersionControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="59" selection-start="2757" selection-end="2757" vertical-scroll-proportion="0.49925706">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/GetFileListing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="43" selection-start="2258" selection-end="2258" vertical-scroll-proportion="0.6909361">
-          <folding>
-            <element signature="e#0#3289#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CreateEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="48" selection-start="2109" selection-end="2109" vertical-scroll-proportion="0.2154532">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/VersionControlFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="13" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/ConfigureVersionControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="67" selection-start="2093" selection-end="2093" vertical-scroll-proportion="-0.10243055">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/ContentSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="49" selection-start="2092" selection-end="2092" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/InfoDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="16" selection-start="1924" selection-end="1924" vertical-scroll-proportion="0.14078374">
-          <folding>
-            <element signature="e#0#2802#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/ContentExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="83" column="48" selection-start="2924" selection-end="2924" vertical-scroll-proportion="0.0">
@@ -840,24 +800,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/AppVars.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="241" column="43" selection-start="6223" selection-end="6223" vertical-scroll-proportion="0.0">
+        <state line="412" column="33" selection-start="14780" selection-end="14780" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.7.0_40/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1910" column="0" selection-start="75549" selection-end="75549" vertical-scroll-proportion="0.33284023">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/VersionControlFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="13" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/WatchDir.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="66" selection-start="3425" selection-end="3425" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.7.0_40/src.zip!/java/util/concurrent/ThreadPoolExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1144" column="0" selection-start="44322" selection-end="44322" vertical-scroll-proportion="0.693609">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CreatedFolderPaths.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="13" selection-start="1925" selection-end="1925" vertical-scroll-proportion="0.37155297">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/SaveExtractVersionControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="45" selection-start="2529" selection-end="2529" vertical-scroll-proportion="0.26124817">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CreatedFolders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="17" selection-start="1949" selection-end="1949" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/FindFolders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="25" selection-start="2511" selection-end="2511" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/SearchFolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="45" selection-start="2036" selection-end="2036" vertical-scroll-proportion="0.0">
           <folding>
+            <element signature="e#0#2425#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CreateDirStructure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="370" column="109" selection-start="13325" selection-end="13325" vertical-scroll-proportion="0.18722786">
+        <state line="91" column="33" selection-start="3455" selection-end="3455" vertical-scroll-proportion="0.0">
           <folding>
+            <element signature="e#2932#2940#0" expanded="true" />
+            <element signature="e#3010#3018#0" expanded="true" />
+            <element signature="e#3091#3099#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/AppVars.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="64" selection-start="2658" selection-end="2658" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/GetFileListing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="76" selection-start="2122" selection-end="2122" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#2890#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/Serializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="67" selection-start="3083" selection-end="3144" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#3802#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#8534#8908#0" expanded="true" />
-            <element signature="e#8897#8898#0" expanded="true" />
-            <element signature="e#8946#9106#0" expanded="true" />
-            <element signature="e#9095#9096#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CheckPreExisting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="84" selection-start="3053" selection-end="3053" vertical-scroll-proportion="0.4179971">
+          <folding>
+            <element signature="e#0#3780#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -868,10 +926,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>PersVcs:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.3893395" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

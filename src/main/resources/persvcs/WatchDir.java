@@ -103,7 +103,7 @@ public class WatchDir {
         GetFileListing gfl = new GetFileListing();
         List<String> fileList = gfl.getFileListing(dirPath);
 
-        CreateDirStructure.createDirectories(fileList);
+        CreateDirStructure.createDirectories(fileList, dirPath);
 
         return directory;
     }

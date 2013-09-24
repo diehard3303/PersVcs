@@ -1,5 +1,5 @@
 /*
- * @(#)Serializer.java   13/09/24
+ * @(#)CheckPreExisting.java   13/09/24
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -39,82 +39,66 @@ package persvcs;
 //~--- non-JDK imports --------------------------------------------------------
 
 import com.thoughtworks.xstream.XStream;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import static persvcs.AppVars.getRepoLocation;
+import static persvcs.AppVars.getSearchFolderFile;
+import static persvcs.AppVars.getVersionControlFile;
+import static persvcs.AppVars.setExistingExists;
 
 //~--- JDK imports ------------------------------------------------------------
-
-import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
- * Date: 9/21/13
- * Time: 2:36 PM
+ * Date: 9/24/13
+ * Time: 10:20 AM
  * Original Project: PersVcs
  */
-public class Serializer {
+public class CheckPreExisting {
+
+    /** Field description */
+    public static final String SLASH = "/";
 
     /**
      * Method description
      *
      *
-     * @param xmlPath
-     * @param version
+     * @param path
      */
-    public void serializeObject(String xmlPath, Object version) {
-        XStream xs = new XStream();
-        String xml = "";
-        byte[] bytes;
-        java.io.FileOutputStream fos = null;
+    public static void checkPreExistingFiles(String path) {
+        String xPath = path.substring(3, path.length() - 1);
+        String wrkPath =
+            new StringBuilder().append(getRepoLocation()).append(xPath).append(getSearchFolderFile()).toString();
 
-        try {
-            xml = xs.toXML(version);
-            fos = new java.io.FileOutputStream(xmlPath);
-            bytes = xml.getBytes("UTF-8");
-            fos.write(bytes);
-        } catch (Exception e) {
-            System.err.println("Error in XML Write: " + e.getMessage());
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (java.io.IOException e) {
-                    e.printStackTrace();
+        if (new File(wrkPath).exists()) {
+            XStream xs = new XStream();
+
+            xs.addImplicitCollection(SearchFolder.class, "searchfolder");
+
+            ArrayList<String> sf = (SearchFolder) xs.fromXML(wrkPath);
+
+            for (Iterator<String> iterator = sf.iterator(); iterator.hasNext(); ) {
+                String f = iterator.next();
+                File fg = new File(f + SLASH + getVersionControlFile());
+
+                if (fg.exists()) {
+                    VersionControlFile vcf = SaveExtractVersionControl.extractVersionControl(fg);
+                    CreateEntity ce = new CreateEntity();
+
+                    ce.createEntity(vcf.getSrcFileLocation(), vcf.getSrcFileName(), vcf.getRepoFileLocation(),
+                                    vcf.getCurrentVersion());
+                    setExistingExists(true);
+                } else {
+                    setExistingExists(false);
+
+                    break;
                 }
             }
-        }
-    }
-
-    /**
-     * Method description
-     *
-     *
-     * @param xmlFile
-     * @param list
-     */
-    public void serializeArrayListSearchFolder(String xmlFile, ArrayList<String> list) {
-        XStream xs = new XStream();
-
-        xs.addImplicitCollection(SearchFolder.class, "searchfolder");
-
-        String xml;
-        byte[] bytes;
-        java.io.FileOutputStream fos = null;
-
-        try {
-            xml = xs.toXML(list);
-            fos = new java.io.FileOutputStream(xmlFile);
-            bytes = xml.getBytes("UTF-8");
-            fos.write(bytes);
-        } catch (Exception e) {
-            System.err.println("Error in XML Write: " + e.getMessage());
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (java.io.IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        } else {
+            setExistingExists(false);
         }
     }
 }

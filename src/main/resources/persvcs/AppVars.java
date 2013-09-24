@@ -1,5 +1,5 @@
 /*
- * @(#)AppVars.java   13/09/22
+ * @(#)AppVars.java   13/09/24
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -36,10 +36,15 @@ either expressed or implied, of the FreeBSD Project.
 
 package persvcs;
 
-import java.io.IOException;
-import java.util.List;
-import javaxt.io.File;
+//~--- non-JDK imports --------------------------------------------------------
+
 import org.apache.commons.io.FileUtils;
+
+//~--- JDK imports ------------------------------------------------------------
+
+import java.io.IOException;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -53,8 +58,8 @@ public class AppVars {
     private static final String TEMP_PATH = "/home/temp/";
     private static final String BACKUP_PATH = "/home/backup/";
     private static final String VERSION_CONTROL_FILE = "Version_Control.xml";
-    private static final String CREATED_FOLDERS = "Created_Folders.dat";
-    private static final String CREATED_FOLDER_PATHS = "Created_Folder_Paths.dat";
+    private static final String CREATED_FOLDERS = "Files.per";
+    private static final String CREATED_FOLDER_PATHS = "Folders.per";
     private static final String PERSISTENCE_UNIT = "DvVcs";
     private static final String CONTENT_VER = "Content_Ver_";
     private static final String CONTENT_VER_EXT = "_.xml";
@@ -62,9 +67,11 @@ public class AppVars {
     private static String mExt = "";
     private static String mFileName = "";
     private static String mFileNameFull = "";
+    private static final String ILLEGAL_EXTENSIONS_EDIT = REPO_PATH + "illegalExtensions.txt";
+    private static final String SEARCH_FOLDER_FILE = "_Search_Folder.dat";
+    private static boolean existingExists = false;
     private static String revisionComment;
     private static List<String> illegalExt;
-    private static final String ILLEGAL_EXTENSIONS_EDIT = REPO_PATH + "illegalExtensions.txt";
 
     /**
      * Method description
@@ -232,20 +239,64 @@ public class AppVars {
         return mFileNameFull;
     }
 
+    /**
+     * Method description
+     *
+     *
+     * @return   Illegal text file in list
+     */
     public static List<String> getIllegalExt() {
         java.io.File fi = new java.io.File(getRepoLocation() + "illegalExtensions.txt");
+
         try {
             illegalExt = FileUtils.readLines(fi, "utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return illegalExt;
     }
 
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
     public static String getIllegalExtensionsEdit() {
         return ILLEGAL_EXTENSIONS_EDIT;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return    search folder listing
+     */
+    public static String getSearchFolderFile() {
+        return SEARCH_FOLDER_FILE;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return  existingExists
+     */
+    public static boolean isExistingExists() {
+        return existingExists;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param existingExists
+     */
+    public static void setExistingExists(boolean existingExists) {
+        AppVars.existingExists = existingExists;
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/22
+//~ Formatted in DD Std on 13/09/24
