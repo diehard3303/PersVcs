@@ -38,9 +38,10 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
-import com.thoughtworks.xstream.XStream;
 import java.io.File;
-import java.util.ArrayList;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Iterator;
 
 import static persvcs.AppVars.getRepoLocation;
@@ -74,13 +75,9 @@ public class CheckPreExisting {
             new StringBuilder().append(getRepoLocation()).append(xPath).append(getSearchFolderFile()).toString();
 
         if (new File(wrkPath).exists()) {
-            XStream xs = new XStream();
+            SearchFolder sf = deserializeSearch(wrkPath);
 
-            xs.addImplicitCollection(SearchFolder.class, "searchfolder");
-
-            ArrayList<String> sf = (SearchFolder) xs.fromXML(wrkPath);
-
-            for (Iterator<String> iterator = sf.iterator(); iterator.hasNext(); ) {
+            for (Iterator<String> iterator = sf.getSearchFolder().iterator(); iterator.hasNext(); ) {
                 String f = iterator.next();
                 File fg = new File(f + SLASH + getVersionControlFile());
 
@@ -89,7 +86,7 @@ public class CheckPreExisting {
                     CreateEntity ce = new CreateEntity();
 
                     ce.createEntity(vcf.getSrcFileLocation(), vcf.getSrcFileName(), vcf.getRepoFileLocation(),
-                                    vcf.getCurrentVersion());
+                            vcf.getCurrentVersion());
                     setExistingExists(true);
                 } else {
                     setExistingExists(false);
@@ -100,6 +97,29 @@ public class CheckPreExisting {
         } else {
             setExistingExists(false);
         }
+    }
+
+    private static SearchFolder deserializeSearch(String filePath) {
+        SearchFolder sf;
+
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+
+            sf = (SearchFolder) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+
+            return null;
+        } catch (ClassNotFoundException c) {
+            c.printStackTrace();
+
+            return null;
+        }
+
+        return sf;
     }
 }
 

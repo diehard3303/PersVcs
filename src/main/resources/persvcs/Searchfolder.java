@@ -48,8 +48,8 @@ import java.util.ArrayList;
  * Time: 9:37 AM
  * Original Project: PersVcs
  */
-public class SearchFolder extends ArrayList<String> implements Serializable {
-    private ArrayList<String> searchfolder;
+public class SearchFolder implements Serializable {
+    private ArrayList<String> searchFolder;
 
     /**
      * Method description
@@ -57,8 +57,8 @@ public class SearchFolder extends ArrayList<String> implements Serializable {
      *
      * @return  searchFolder list
      */
-    public ArrayList<String> getSearchfolder() {
-        return searchfolder;
+    public ArrayList<String> getSearchFolder() {
+        return searchFolder;
     }
 
     /**
@@ -68,9 +68,11 @@ public class SearchFolder extends ArrayList<String> implements Serializable {
      *
      * @param folder
      */
-    public void setSearchfolder(ArrayList<String> folder) {
-        searchfolder = folder;
+    public void setSearchFolder(ArrayList<String> folder) {
+        searchFolder = folder;
     }
+
+
 }
 
 

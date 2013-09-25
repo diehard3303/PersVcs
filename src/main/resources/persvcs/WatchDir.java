@@ -1,5 +1,5 @@
 /*
- * @(#)WatchDir.java   13/09/21
+ * @(#)WatchDir.java   13/09/25
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -103,11 +103,13 @@ public class WatchDir {
         GetFileListing gfl = new GetFileListing();
         List<String> fileList = gfl.getFileListing(dirPath);
 
-        CreateDirStructure.createDirectories(fileList, dirPath);
+        if (!AppVars.isExistingExists()) {
+            CreateDirStructure.createDirectories(fileList, dirPath);
+        }
 
         return directory;
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/21
+//~ Formatted in DD Std on 13/09/25

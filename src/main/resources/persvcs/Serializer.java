@@ -1,5 +1,5 @@
 /*
- * @(#)Serializer.java   13/09/24
+ * @(#)Serializer.java   13/09/25
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -42,7 +42,9 @@ import com.thoughtworks.xstream.XStream;
 
 //~--- JDK imports ------------------------------------------------------------
 
-import java.util.ArrayList;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 /**
  * Created with IntelliJ IDEA.
@@ -64,11 +66,11 @@ public class Serializer {
         XStream xs = new XStream();
         String xml = "";
         byte[] bytes;
-        java.io.FileOutputStream fos = null;
+        FileOutputStream fos = null;
 
         try {
             xml = xs.toXML(version);
-            fos = new java.io.FileOutputStream(xmlPath);
+            fos = new FileOutputStream(xmlPath);
             bytes = xml.getBytes("UTF-8");
             fos.write(bytes);
         } catch (Exception e) {
@@ -89,35 +91,21 @@ public class Serializer {
      *
      *
      * @param xmlFile
-     * @param list
+     * @param sf
      */
-    public void serializeArrayListSearchFolder(String xmlFile, ArrayList<String> list) {
-        XStream xs = new XStream();
-
-        xs.addImplicitCollection(SearchFolder.class, "searchfolder");
-
-        String xml;
-        byte[] bytes;
-        java.io.FileOutputStream fos = null;
-
+    public void serializeSearch(String xmlFile, SearchFolder sf) {
         try {
-            xml = xs.toXML(list);
-            fos = new java.io.FileOutputStream(xmlFile);
-            bytes = xml.getBytes("UTF-8");
-            fos.write(bytes);
-        } catch (Exception e) {
-            System.err.println("Error in XML Write: " + e.getMessage());
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (java.io.IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            FileOutputStream fileOut = new FileOutputStream(xmlFile);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+            out.writeObject(sf);
+            out.close();
+            fileOut.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/24
+//~ Formatted in DD Std on 13/09/25

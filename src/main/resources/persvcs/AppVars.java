@@ -1,5 +1,5 @@
 /*
- * @(#)AppVars.java   13/09/24
+ * @(#)AppVars.java   13/09/25
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -58,8 +58,8 @@ public class AppVars {
     private static final String TEMP_PATH = "/home/temp/";
     private static final String BACKUP_PATH = "/home/backup/";
     private static final String VERSION_CONTROL_FILE = "Version_Control.xml";
-    private static final String CREATED_FOLDERS = "Files.per";
-    private static final String CREATED_FOLDER_PATHS = "Folders.per";
+    private static final String CREATED_FOLDERS = "Files.xml";
+    private static final String CREATED_FOLDER_PATHS = "Folders.xml";
     private static final String PERSISTENCE_UNIT = "DvVcs";
     private static final String CONTENT_VER = "Content_Ver_";
     private static final String CONTENT_VER_EXT = "_.xml";
@@ -299,4 +299,4 @@ public class AppVars {
 }
 
 
-//~ Formatted in DD Std on 13/09/24
+//~ Formatted in DD Std on 13/09/25

@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Tue Sep 24 12:47:34 EDT 2013:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0141-50de-64c1-0000003a50b0 
-on database directory D:\home\dvvcs with class loader sun.misc.Launcher$AppClassLoader@1f12c4e 
+Wed Sep 25 00:40:30 EDT 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0141-536b-1a80-00000039f280 
+on database directory D:\home\dvvcs with class loader sun.misc.Launcher$AppClassLoader@1a7bf11 
 Loaded from file:/D:/GitHub/PersVcs/lib/derby-10.10.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_40-b43

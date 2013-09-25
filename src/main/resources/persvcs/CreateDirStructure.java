@@ -66,9 +66,6 @@ import static persvcs.ContentSerializer.serializeContent;
 public class CreateDirStructure {
 
     /** Field description */
-    public static final String UnderScore = "_";
-
-    /** Field description */
     public static final String SLASH = "\\";
 
     /**
@@ -109,18 +106,18 @@ public class CreateDirStructure {
             }
         }
 
-        SerializeFolderPaths(fileName, folderPath);
+        //SerializeFolderPaths(fileName, folderPath);
         SerializeSearchFolderPaths(SearchArchive, fileNameOnly);
     }
 
     private static void SerializeSearchFolderPaths(ArrayList<String> fPath, String filePrefix) {
         SearchFolder sf = new SearchFolder();
 
-        sf.setSearchfolder(fPath);
+        sf.setSearchFolder(fPath);
 
         Serializer sr = new Serializer();
 
-        sr.serializeArrayListSearchFolder(getRepoLocation() + filePrefix + getSearchFolderFile(), sf);
+        sr.serializeSearch(getRepoLocation() + filePrefix + getSearchFolderFile(), sf);
     }
 
     private static void SerializeFolderPaths(ArrayList<String> fileName, ArrayList<String> folderPath) {
