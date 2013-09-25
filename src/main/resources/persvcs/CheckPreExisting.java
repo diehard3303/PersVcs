@@ -1,5 +1,5 @@
 /*
- * @(#)CheckPreExisting.java   13/09/24
+ * @(#)CheckPreExisting.java   13/09/25
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -70,9 +70,10 @@ public class CheckPreExisting {
      * @param path
      */
     public static void checkPreExistingFiles(String path) {
-        String xPath = path.substring(3, path.length() - 1);
+        String xPath = new java.io.File(path).getName();
         String wrkPath =
             new StringBuilder().append(getRepoLocation()).append(xPath).append(getSearchFolderFile()).toString();
+        int ver;
 
         if (new File(wrkPath).exists()) {
             SearchFolder sf = deserializeSearch(wrkPath);
@@ -85,8 +86,18 @@ public class CheckPreExisting {
                     VersionControlFile vcf = SaveExtractVersionControl.extractVersionControl(fg);
                     CreateEntity ce = new CreateEntity();
 
-                    ce.createEntity(vcf.getSrcFileLocation(), vcf.getSrcFileName(), vcf.getRepoFileLocation(),
-                            vcf.getCurrentVersion());
+                    if (checkHash(vcf.getSrcFileLocation(), vcf.getMd5Hash())) {
+                        ce.createEntity(vcf.getSrcFileLocation(), vcf.getSrcFileName(), vcf.getRepoFileLocation(),
+                                        vcf.getCurrentVersion());
+                    } else {
+                        ver = vcf.getCurrentVersion();
+                        ce.createEntity(vcf.getSrcFileLocation(), vcf.getSrcFileName(), vcf.getRepoFileLocation(),
+                                        ver++);
+                        vcf.setCurrentVersion(ver);
+                        String folderName = new javaxt.io.File(f).getName();
+                        saveVersion(vcf, folderName);
+                    }
+
                     setExistingExists(true);
                 } else {
                     setExistingExists(false);
@@ -97,6 +108,24 @@ public class CheckPreExisting {
         } else {
             setExistingExists(false);
         }
+    }
+
+    private static void saveVersion(VersionControlFile vc, String path) {
+
+        SaveExtractVersionControl.saveVersion(path + SLASH + AppVars.getVersionControlFile(), vc);
+        ContentSerializer.serializeContent(vc.getSrcFileLocation(), path);
+    }
+
+    private static boolean checkHash(String filePath, String oldHash) {
+        boolean chk = false;
+        File fh = new File(filePath);
+        String newHash = Hasher.md5FastHash(fh);
+
+        if (oldHash.equals(newHash)) {
+            chk = true;
+        }
+
+        return chk;
     }
 
     private static SearchFolder deserializeSearch(String filePath) {
@@ -124,4 +153,4 @@ public class CheckPreExisting {
 }
 
 
-//~ Formatted in DD Std on 13/09/24
+//~ Formatted in DD Std on 13/09/25

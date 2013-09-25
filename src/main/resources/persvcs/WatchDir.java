@@ -85,7 +85,9 @@ public class WatchDir {
                 event = (Directory.Event) events.remove(0);
 
                 if ((event.getEventID() == event.MODIFY) && event.toString().contains("Modify")
-                        && new java.io.File(event.getFile()).exists()) {}
+                        && new java.io.File(event.getFile()).exists()) {
+                    ProcessModifiedFile.processModFile(event.getFile());
+                }
 
                 if ((event.getEventID() == event.CREATE) && event.toString().contains("Create")) {}
 

@@ -39,9 +39,7 @@ package persvcs;
 //~--- JDK imports ------------------------------------------------------------
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -50,7 +48,7 @@ import java.util.List;
  * Time: 2:38 PM
  * Original Project: PersVcs
  */
-public class CreatedFolders extends ArrayList<String> implements Serializable {
+public class CreatedFolders implements Serializable {
     private ArrayList<String> foldersCreated;
 
     /**

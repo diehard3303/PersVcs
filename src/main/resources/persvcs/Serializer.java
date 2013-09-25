@@ -64,7 +64,7 @@ public class Serializer {
      */
     public void serializeObject(String xmlPath, Object version) {
         XStream xs = new XStream();
-        String xml = "";
+        String xml;
         byte[] bytes;
         FileOutputStream fos = null;
 
@@ -99,6 +99,46 @@ public class Serializer {
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
 
             out.writeObject(sf);
+            out.close();
+            fileOut.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param xmlFile
+     * @param cf
+     */
+    public void serializeFiles(String xmlFile, CreatedFolders cf) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(xmlFile);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+            out.writeObject(cf);
+            out.close();
+            fileOut.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param xmlFile
+     * @param cp
+     */
+    public void serializeFolderPaths(String xmlFile, CreatedFolderPaths cp) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(xmlFile);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+            out.writeObject(cp);
             out.close();
             fileOut.close();
         } catch (IOException ioe) {

@@ -58,8 +58,8 @@ public class AppVars {
     private static final String TEMP_PATH = "/home/temp/";
     private static final String BACKUP_PATH = "/home/backup/";
     private static final String VERSION_CONTROL_FILE = "Version_Control.xml";
-    private static final String CREATED_FOLDERS = "Files.xml";
-    private static final String CREATED_FOLDER_PATHS = "Folders.xml";
+    private static final String FILES = "Files.dat";
+    private static final String FOLDER_PATHS = "Folders.dat";
     private static final String PERSISTENCE_UNIT = "DvVcs";
     private static final String CONTENT_VER = "Content_Ver_";
     private static final String CONTENT_VER_EXT = "_.xml";
@@ -89,8 +89,8 @@ public class AppVars {
      *
      * @return created folder path file name
      */
-    public static String getCreatedFolderPaths() {
-        return CREATED_FOLDER_PATHS;
+    public static String getFolderPathsCreated() {
+        return FOLDER_PATHS;
     }
 
     /**
@@ -99,8 +99,8 @@ public class AppVars {
      *
      * @return  filename for created folders listing
      */
-    public static String getCreatedFolders() {
-        return CREATED_FOLDERS;
+    public static String getFilesFound() {
+        return FILES;
     }
 
     /**

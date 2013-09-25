@@ -1,5 +1,5 @@
 /*
- * @(#)CreatedFolderPaths.java   13/09/21
+ * @(#)ProcessModifiedFile.java   13/09/25
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -38,39 +38,45 @@ package persvcs;
 
 //~--- JDK imports ------------------------------------------------------------
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
  * User: TJ (DieHard)
- * Date: 9/21/13
- * Time: 2:52 PM
+ * Date: 9/25/13
+ * Time: 2:16 PM
  * Original Project: PersVcs
  */
-public class CreatedFolderPaths implements Serializable {
-    private ArrayList<String> folderPaths;
+public class ProcessModifiedFile {
 
     /**
      * Method description
      *
      *
-     * @param folderPaths
+     * @param filePath
      */
-    public void setFolderPaths(ArrayList<String> folderPaths) {
-        this.folderPaths = folderPaths;
-    }
+    public static void processModFile(String filePath) {
+        String folder = FindFolders.findFolderPath(new javaxt.io.File(filePath).getName());
+        String wrkPath = new StringBuilder().append(AppVars.getRepoLocation()).append(folder).append(
+                             AppVars.getVersionControlFile()).toString();
 
-    /**
-     * Method description
-     *
-     *
-     * @return array list of folder paths
-     */
-    public ArrayList<String> getFolderPaths() {
-        return folderPaths;
+        if (new java.io.File(wrkPath).exists()) {
+            VersionControlFile vc = SaveExtractVersionControl.extractVersionControl(new java.io.File(wrkPath));
+            String mHash = Hasher.md5FastHash(new java.io.File(filePath));
+
+            if (!vc.getMd5Hash().equals(mHash)) {
+                Date d = new Date();
+                int ver = vc.getCurrentVersion();
+                vc.setMd5Hash(mHash);
+                vc.setEditTime(d);
+                vc.setSrcFileName(new javaxt.io.File(filePath).getName());
+                vc.setRepoFileLocation(AppVars.getRepoLocation() + folder + "//");
+                vc.setCurrentVersion(ver++);
+                vc.setSrcFileLocation(filePath);
+            }
+        }
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/21
+//~ Formatted in DD Std on 13/09/25

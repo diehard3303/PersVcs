@@ -1,5 +1,5 @@
 /*
- * @(#)FindFolders.java   13/09/21
+ * @(#)FindFolders.java   13/09/25
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -36,11 +36,11 @@ either expressed or implied, of the FreeBSD Project.
 
 package persvcs;
 
-//~--- non-JDK imports --------------------------------------------------------
-
-import com.thoughtworks.xstream.XStream;
-
 //~--- JDK imports ------------------------------------------------------------
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import java.util.ArrayList;
 
@@ -63,44 +63,62 @@ public class FindFolders {
      */
     public static String findFolderPath(String fileName) {
         String folder;
-        ArrayList<String> folders = extractFolders();
-        ArrayList<String> folderPath = extractFolderPath();
+        CreatedFolders cf = deserializeFiles(AppVars.getRepoLocation() + AppVars.getFilesFound());
+        CreatedFolderPaths cfp = deserializeFolders(AppVars.getRepoLocation() + AppVars.getFolderPathsCreated());
+        ArrayList<String> folderPath = cfp.getFolderPaths();
+        ArrayList<String> files = cf.getFoldersCreated();
 
-        folder = folders.contains(fileName) ? folderPath.get(folders.indexOf(fileName)) : null;
+        folder = files.contains(fileName) ? folderPath.get(folderPath.indexOf(fileName)) : null;
 
         return folder;
     }
 
-    /**
-     * Method description
-     *
-     *
-     *
-     * @return  Created Folder Paths object
-     */
-    private static CreatedFolderPaths extractFolderPath() {
-        XStream xs = new XStream();
-        CreatedFolderPaths cfp = (CreatedFolderPaths) xs.fromXML(
-                                     new StringBuilder().append(AppVars.getRepoLocation()).append(
-                                         AppVars.getCreatedFolderPaths()).toString());
+    private static CreatedFolders deserializeFiles(String filePath) {
+        CreatedFolders sf;
 
-        return (CreatedFolderPaths) cfp.getFolderPaths();
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+
+            sf = (CreatedFolders) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+
+            return null;
+        } catch (ClassNotFoundException c) {
+            c.printStackTrace();
+
+            return null;
+        }
+
+        return sf;
     }
 
-    /**
-     * Method description
-     *
-     * @return  Created Folders object
-     */
-    private static CreatedFolders extractFolders() {
-        XStream xs = new XStream();
-        CreatedFolders cf = (CreatedFolders) xs.fromXML(
-                                new StringBuilder().append(AppVars.getRepoLocation()).append(
-                                    AppVars.getCreatedFolders()).toString());
+    private static CreatedFolderPaths deserializeFolders(String filePath) {
+        CreatedFolderPaths sf;
 
-        return (CreatedFolders) cf.getFoldersCreated();
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+
+            sf = (CreatedFolderPaths) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+
+            return null;
+        } catch (ClassNotFoundException c) {
+            c.printStackTrace();
+
+            return null;
+        }
+
+        return sf;
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/21
+//~ Formatted in DD Std on 13/09/25

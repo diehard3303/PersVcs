@@ -1,5 +1,5 @@
 /*
- * @(#)Main.java   13/09/22
+ * @(#)Main.java   13/09/25
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -272,12 +272,55 @@ public class Main extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int tmpRow = jt.getSelectedRow();
+                int tmpCol = jt.getSelectedColumn();
 
                 if (tmpRow > -1) {
-                    String repoPath = (String) jt.getModel().getValueAt(tmpRow, 4);
+                    switch (tmpCol) {
+                     case 1 :
+                         String repoPath = (String) jt.getModel().getValueAt(tmpRow, 4);
 
-                    setLabelValues(repoPath);
-                    rebuildVersionList(repoPath);
+                         setLabelValues(repoPath);
+                         rebuildVersionList(repoPath);
+
+                         break;
+
+                     case 2 :
+                         File fr = new File((String) jt.getModel().getValueAt(tmpRow, 2));
+                         javaxt.io.File ft = new javaxt.io.File((String) jt.getModel().getValueAt(tmpRow, 2));
+
+                         if (!AppVars.getIllegalExt().contains(ft.getExtension())) {
+                             try {
+                                 Desktop.getDesktop().open(fr);
+                             } catch (IOException e1) {
+                                 e1.printStackTrace();
+                             }
+                         }
+
+                         break;
+
+                     case 3 :
+                         File vcPath = new File(jt.getModel().getValueAt(tmpRow, 4) + AppVars.getVersionControlFile());
+
+                         try {
+                             Desktop.getDesktop().open(vcPath);
+                         } catch (IOException e1) {
+                             e1.printStackTrace();
+                         }
+
+                         break;
+
+                     case 4 :
+                         String tmp = (String) jt.getModel().getValueAt(tmpRow, 4);
+                         File fw = new File(tmp);
+
+                         try {
+                             Desktop.getDesktop().open(fw);
+                         } catch (IOException e1) {
+                             e1.printStackTrace();
+                         }
+
+                         break;
+                    }
                 }
             }
         });
@@ -450,4 +493,4 @@ public class Main extends JFrame {
 }
 
 
-//~ Formatted in DD Std on 13/09/22
+//~ Formatted in DD Std on 13/09/25
