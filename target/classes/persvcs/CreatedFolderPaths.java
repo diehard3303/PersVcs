@@ -48,7 +48,7 @@ import java.util.ArrayList;
  * Time: 2:52 PM
  * Original Project: PersVcs
  */
-public class CreatedFolderPaths extends ArrayList<String> implements Serializable {
+public class CreatedFolderPaths implements Serializable {
     private ArrayList<String> folderPaths;
 
     /**

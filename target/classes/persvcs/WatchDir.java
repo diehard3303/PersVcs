@@ -1,5 +1,5 @@
 /*
- * @(#)WatchDir.java   13/09/21
+ * @(#)WatchDir.java   13/09/25
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -85,7 +85,9 @@ public class WatchDir {
                 event = (Directory.Event) events.remove(0);
 
                 if ((event.getEventID() == event.MODIFY) && event.toString().contains("Modify")
-                        && new java.io.File(event.getFile()).exists()) {}
+                        && new java.io.File(event.getFile()).exists()) {
+                    ProcessModifiedFile.processModFile(event.getFile());
+                }
 
                 if ((event.getEventID() == event.CREATE) && event.toString().contains("Create")) {}
 
@@ -103,11 +105,13 @@ public class WatchDir {
         GetFileListing gfl = new GetFileListing();
         List<String> fileList = gfl.getFileListing(dirPath);
 
-        CreateDirStructure.createDirectories(fileList);
+        if (!AppVars.isExistingExists()) {
+            CreateDirStructure.createDirectories(fileList, dirPath);
+        }
 
         return directory;
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/21
+//~ Formatted in DD Std on 13/09/25

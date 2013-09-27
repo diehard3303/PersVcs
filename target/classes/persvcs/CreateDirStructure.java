@@ -1,5 +1,5 @@
 /*
- * @(#)CreateDirStructure.java   13/09/22
+ * @(#)CreateDirStructure.java   13/09/24
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -38,19 +38,23 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
-import javaxt.io.Directory;
-import javaxt.io.File;
-
-import static persvcs.AppVars.*;
-import static persvcs.ConfigureVersionControl.configVersionControl;
-
-import static persvcs.ContentSerializer.serializeContent;
-
-//~--- JDK imports ------------------------------------------------------------
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
+import javaxt.io.Directory;
+import javaxt.io.File;
+
+import static persvcs.AppVars.getFolderPathsCreated;
+import static persvcs.AppVars.getFilesFound;
+import static persvcs.AppVars.getFileNameFull;
+import static persvcs.AppVars.getRepoLocation;
+import static persvcs.AppVars.getSearchFolderFile;
+import static persvcs.AppVars.getVersionControlFile;
+import static persvcs.ConfigureVersionControl.configVersionControl;
+import static persvcs.ContentSerializer.serializeContent;
+
+//~--- JDK imports ------------------------------------------------------------
 
 /**
  * Created with IntelliJ IDEA.
@@ -62,9 +66,6 @@ import java.util.List;
 public class CreateDirStructure {
 
     /** Field description */
-    public static final String UnderScore = "_";
-
-    /** Field description */
     public static final String SLASH = "\\";
 
     /**
@@ -72,11 +73,13 @@ public class CreateDirStructure {
      *
      *
      * @param dirList
+     * @param dPath
      */
-    public static void createDirectories(List<String> dirList) {
-        String oldName = "";
+    public static void createDirectories(List<String> dirList, String dPath) {
         ArrayList<String> fileName = new ArrayList<String>(dirList.size());
         ArrayList<String> folderPath = new ArrayList<String>(dirList.size());
+        ArrayList<String> SearchArchive = new ArrayList<String>(dirList.size());
+        String fileNameOnly = new File(dPath).getName();
 
         for (Iterator<String> iterator = dirList.iterator(); iterator.hasNext(); ) {
             Object f = iterator.next();
@@ -84,49 +87,37 @@ public class CreateDirStructure {
             if (f != null) {
                 String srcPath = new File(f.toString()).getDirectory().toString();
                 String srcFileName = getFileNameFull(f.toString());
-                String fileNameOnly = getFileNameOnly(f.toString());
+                UUID folderName = UUID.randomUUID();
+                Directory di = new Directory(getRepoLocation() + folderName);
 
-                if (fileNameOnly.equals(oldName)) {
-                    fileNameOnly = fileNameOnly + UnderScore + getExtOnly(f.toString());
+                di.create();
+                fileName.add(srcFileName);
+                folderPath.add(getRepoLocation() + folderName);
+                SearchArchive.add(getRepoLocation() + folderName);
+                configVersionControl(srcFileName, srcPath + SLASH, folderName.toString());
+                serializeContent(srcPath + srcFileName, folderName.toString());
 
-                    Directory di = new Directory(getRepoLocation() + fileNameOnly);
+                java.io.File fe = new java.io.File(
+                                      new StringBuilder().append(getRepoLocation()).append(folderName).append(
+                                          SLASH).append(getVersionControlFile()).toString());
+                int ver = SaveExtractVersionControl.extractVersion(fe);
 
-                    di.create();
-                    fileName.add(srcFileName);
-                    folderPath.add(getRepoLocation() + fileNameOnly);
-                    configVersionControl(srcFileName, srcPath + SLASH, fileNameOnly);
-                    serializeContent(srcPath + srcFileName, fileNameOnly);
-
-                    java.io.File fe = new java.io.File(
-                                          new StringBuilder().append(getRepoLocation()).append(
-                                              fileNameOnly).append(SLASH).append(
-                                              getVersionControlFile()).toString());
-                    int ver = SaveExtractVersionControl.extractVersion(fe);
-
-                    CreateEntity.createEntity(f.toString(), srcFileName, getRepoLocation() + fileNameOnly, ver);
-                } else {
-                    Directory di = new Directory(getRepoLocation() + fileNameOnly);
-
-                    di.create();
-                    fileName.add(srcFileName);
-                    folderPath.add(getRepoLocation() + fileNameOnly);
-                    configVersionControl(srcFileName, srcPath + SLASH, fileNameOnly);
-                    serializeContent(f.toString(), fileNameOnly);
-
-                    java.io.File fe = new java.io.File(
-                                          new StringBuilder().append(getRepoLocation()).append(
-                                              fileNameOnly).append(SLASH).append(
-                                              getVersionControlFile()).toString());
-                    int ver = SaveExtractVersionControl.extractVersion(fe);
-
-                    CreateEntity.createEntity(f.toString(), srcFileName, getRepoLocation() + fileNameOnly, ver);
-                }
-
-                oldName = fileNameOnly;
+                CreateEntity.createEntity(f.toString(), srcFileName, getRepoLocation() + folderName, ver);
             }
         }
 
         SerializeFolderPaths(fileName, folderPath);
+        SerializeSearchFolderPaths(SearchArchive, fileNameOnly);
+    }
+
+    private static void SerializeSearchFolderPaths(ArrayList<String> fPath, String filePrefix) {
+        SearchFolder sf = new SearchFolder();
+
+        sf.setSearchFolder(fPath);
+
+        Serializer sr = new Serializer();
+
+        sr.serializeSearch(getRepoLocation() + filePrefix + getSearchFolderFile(), sf);
     }
 
     private static void SerializeFolderPaths(ArrayList<String> fileName, ArrayList<String> folderPath) {
@@ -138,11 +129,11 @@ public class CreateDirStructure {
 
         Serializer sr = new Serializer();
 
-        sr.serializeObject(getRepoLocation() + getCreatedFolders(), cf);
+        sr.serializeFiles(getRepoLocation() + getFilesFound(), cf);
         sr = new Serializer();
-        sr.serializeObject(getRepoLocation() + getCreatedFolderPaths(), cfp);
+        sr.serializeFolderPaths(getRepoLocation() + getFolderPathsCreated(), cfp);
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/22
+//~ Formatted in DD Std on 13/09/24

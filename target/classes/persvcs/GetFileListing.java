@@ -1,5 +1,5 @@
 /*
- * @(#)GetFileListing.java   13/09/21
+ * @(#)GetFileListing.java   13/09/24
  * 
  * Copyright (c) 2013 DieHard Development
  *
@@ -38,12 +38,13 @@ package persvcs;
 
 //~--- non-JDK imports --------------------------------------------------------
 
-import javax.swing.JOptionPane;
 import javaxt.io.Directory;
 
 //~--- JDK imports ------------------------------------------------------------
 
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 /**
  * Created with IntelliJ IDEA.
@@ -53,9 +54,10 @@ import java.util.List;
  * Original Project: PersVcs
  */
 public class GetFileListing {
+
+    /** Field description */
     public static final String SLASH = "\\";
     private String dirPath;
-    private String filter;
 
     /**
      * Method description
@@ -68,39 +70,21 @@ public class GetFileListing {
     public List<String> getFileListing(String dirPath) {
         this.dirPath = dirPath + SLASH;
 
-        Directory directory = new Directory(this.dirPath);
-        List<String> files;
+        List<String> files = null;
 
-        /* Return a list of all files found in the current directory */
-        files = directory.getChildren(true, "*.*", true);
+        CheckPreExisting.checkPreExistingFiles(this.dirPath);
 
-        JOptionPane.showMessageDialog(null, "File listing complete, Click Refresh Database");
+        if (!AppVars.isExistingExists()) {
+            Directory directory = new Directory(this.dirPath);
 
-        return files;
-    }
-
-    /**
-     * Method description
-     *
-     *
-     * @param dirPath
-     * @param filter
-     *
-     * @return   file listing filtered
-     */
-    public List<String> getFileListing(String dirPath, String filter) {
-        this.dirPath = dirPath + SLASH;
-        this.filter = filter;
-
-        Directory directory = new Directory(this.dirPath);
-        List<String> files;
-
-        /* Return a list of all files found in the current directory */
-        files = directory.getChildren(true, this.filter, true);
+            /* Return a list of all files found in the current directory */
+            files = directory.getChildren(true, "*.*", true);
+            JOptionPane.showMessageDialog(null, "File listing complete, Click Refresh Database");
+        }
 
         return files;
     }
 }
 
 
-//~ Formatted in DD Std on 13/09/21
+//~ Formatted in DD Std on 13/09/24

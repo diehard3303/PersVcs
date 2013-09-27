@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c30d29e7-b330-437f-8c55-416684c9d4ca" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/ProcessModifiedFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/AppVars.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/AppVars.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/CheckPreExisting.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/CheckPreExisting.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/CreateDirStructure.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/CreateDirStructure.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/CreatedFolderPaths.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/CreatedFolderPaths.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/CreatedFolders.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/CreatedFolders.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/FindFolders.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/FindFolders.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/Main.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/Serializer.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/Serializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/persvcs/WatchDir.java" afterPath="$PROJECT_DIR$/src/main/resources/persvcs/WatchDir.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/derby.log" afterPath="$PROJECT_DIR$/derby.log" />
+    <list default="true" id="c30d29e7-b330-437f-8c55-416684c9d4ca" name="Default" comment="fixed issue with modified file not getting correct version">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PersVcs.iws" />
@@ -29,7 +18,7 @@
     <file path="/VersionFileContent.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379790892332" ignored="false" />
     <file path="/VersionControlFile.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379787770600" ignored="false" />
     <file path="/ReadWrite.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1379778545838" ignored="false" />
-    <file path="/Dummy.txt" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380149090239" ignored="false" />
+    <file path="/Dummy.txt" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380226398202" ignored="false" />
     <file path="/WatchDir.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380133033754" ignored="false" />
     <file path="/GetFileListing.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380034384906" ignored="false" />
     <file path="/CreateDirStructure.java" changelist="c30d29e7-b330-437f-8c55-416684c9d4ca" time="1380144200531" ignored="false" />
@@ -74,6 +63,43 @@
     <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="file://$PROJECT_DIR$/src/main/resources/persvcs/FindFolders.java" line="66" class="persvcs.FindFolders" package="persvcs">
         <option name="ENABLED" value="true" />
@@ -181,43 +207,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -239,7 +228,7 @@
       <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="353" column="47" selection-start="12631" selection-end="12631" vertical-scroll-proportion="0.0">
+            <state line="364" column="26" selection-start="13024" selection-end="13024" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -248,16 +237,25 @@
       <file leaf-file-name="CreateDirStructure.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CreateDirStructure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="0" selection-start="3092" selection-end="3092" vertical-scroll-proportion="0.0">
+            <state line="107" column="16" selection-start="4366" selection-end="4366" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CheckPreExisting.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="WatchDir.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/WatchDir.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="83" column="14" selection-start="2704" selection-end="2704" vertical-scroll-proportion="0.27272728">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckPreExisting.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CheckPreExisting.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="51" selection-start="3379" selection-end="3379" vertical-scroll-proportion="0.4844649">
+            <state line="78" column="23" selection-start="2799" selection-end="2799" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -373,6 +371,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -381,90 +381,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PersVcs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PersVcs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PersVcs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PersVcs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="persvcs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PersVcs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PersVcs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PersVcs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PersVcs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -477,7 +395,7 @@
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="appearance" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/META-INF/orm.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main" />
     <property name="project.structure.side.proportion" value="0.3893395" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="Database.TableEditor.Splitter" value="0.9" />
@@ -740,7 +658,11 @@
       <created>1380084272676</created>
       <updated>1380084272676</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fixed issue with modified file not getting correct version">
+      <created>1380149246379</created>
+      <updated>1380149246379</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -844,7 +766,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed all startup issues with new check for pre existing files, changed serialization method to standard Object write from Xstream" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed issue with modified file not getting correct version" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -866,6 +788,7 @@
     <MESSAGE value="configured the illegal extension check" />
     <MESSAGE value="Added pre existing file check to startup load" />
     <MESSAGE value="Fixed all startup issues with new check for pre existing files, changed serialization method to standard Object write from Xstream" />
+    <MESSAGE value="fixed issue with modified file not getting correct version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -922,13 +845,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/WatchDir.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="74" selection-start="2415" selection-end="2415" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/ProcessModifiedFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="51" column="46" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
@@ -975,21 +891,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="353" column="47" selection-start="12631" selection-end="12631" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CreateDirStructure.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="0" selection-start="3092" selection-end="3092" vertical-scroll-proportion="0.0">
+        <state line="364" column="26" selection-start="13024" selection-end="13024" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CheckPreExisting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="51" selection-start="3379" selection-end="3379" vertical-scroll-proportion="0.4844649">
+        <state line="78" column="23" selection-start="2799" selection-end="2799" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/CreateDirStructure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="16" selection-start="4366" selection-end="4366" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/persvcs/WatchDir.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="14" selection-start="2704" selection-end="2704" vertical-scroll-proportion="0.27272728">
           <folding />
         </state>
       </provider>
